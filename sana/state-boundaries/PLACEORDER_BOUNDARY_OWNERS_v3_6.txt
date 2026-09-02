@@ -1,0 +1,56 @@
+[
+  {
+    "name": "if",
+    "offset": 455461,
+    "length": 90,
+    "action_refs": {
+      "placeOrder": [],
+      "submitOrder": [],
+      "createOrder": [],
+      "sendOrder": []
+    },
+    "state_presence": {
+      "marginInputs": false,
+      "collateral": false,
+      "availableMargin": false,
+      "freeCollateral": false,
+      "maintenanceMargin": false,
+      "initialMargin": false,
+      "marginRequirement": false,
+      "withdrawableCollateral": false,
+      "ordersBySymbol": false,
+      "positionsBySymbol": false,
+      "ordersBySequence": false,
+      "subaccountsByIndex": false,
+      "lastMessage": false,
+      "lastMessageSlot": false,
+      "sequence": false,
+      "slot": false,
+      "version": false
+    },
+    "auth_presence": {
+      "knownAuthToken": false,
+      "authToken": false,
+      "sessionManager": false,
+      "wallet": false,
+      "sign": false,
+      "signAndSend": false,
+      "sendTransaction": false,
+      "transaction": false
+    },
+    "validator_presence": {
+      "validateOrder": false,
+      "validateMargin": false,
+      "checkMargin": false,
+      "checkRisk": false,
+      "riskCheck": false,
+      "marginCheck": false,
+      "canPlaceOrder": false,
+      "maxOrder": false,
+      "maxLeverage": false,
+      "ensureMargin": false,
+      "assertMargin": false
+    },
+    "code": "if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}"
+  }
+]

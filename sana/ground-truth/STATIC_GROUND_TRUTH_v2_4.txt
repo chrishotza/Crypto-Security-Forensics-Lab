@@ -1,0 +1,45 @@
+{
+  "static": {
+    "ingress_identity_guard_only": true,
+    "delta_is_reducer": true,
+    "incoming_slot_written": true,
+    "incoming_version_written": true,
+    "lastMessage_replaced": true,
+    "lastMessageSlot_replaced": true,
+    "slotDelta_calculated": true,
+    "negative_slot_math": true,
+    "sequence_stored_by_pF": true,
+    "sequence_guard_in_process": false,
+    "sequence_guard_in_delta": false,
+    "order_sequence_guard": false,
+    "order_whole_entity_write": true,
+    "closed_order_delete": true
+  },
+  "exactFlags": {
+    "process_authority": true,
+    "process_pda": true,
+    "process_slot_guard": false,
+    "process_version_guard": false,
+    "process_sequence_guard": false,
+    "delta_loop": true,
+    "delta_pF": true,
+    "delta_slot_write": true,
+    "delta_version_write": true,
+    "delta_lastMessage": true,
+    "delta_lastMessageSlot": true,
+    "delta_slotDelta": true,
+    "delta_negative_slot_math": true,
+    "pF_sequence_storage": true,
+    "order_map_existing": true,
+    "order_delete": true,
+    "order_write": true,
+    "order_sequence_guard": false
+  },
+  "hardMilestone": {
+    "reached": false,
+    "classification": "STATIC_SURFACE_REQUIRES_FURTHER_VALIDATION",
+    "productionBugConfirmed": false,
+    "backendBehaviorConfirmed": false,
+    "runtimeExploitConfirmed": false
+  }
+}

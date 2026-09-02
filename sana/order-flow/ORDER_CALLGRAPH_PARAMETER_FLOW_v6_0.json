@@ -1,0 +1,892 @@
+{
+  "bundle": {
+    "path": "D:\\Sana-Forensics\\data\\raw\\sana_bundle.js",
+    "bytes": 458284
+  },
+  "knownOffsets": {
+    "placeIsolatedLimitOrder": 453572,
+    "placeIsolatedMarketOrder": 453798,
+    "buildLimitOrderPacket": 454134,
+    "buildPlaceLimitOrder": 454246,
+    "buildMarketOrderPacket": 454379,
+    "buildPlaceMarketOrder": 454470
+  },
+  "knownRegions": {
+    "R": {
+      "offset": 452460,
+      "line": 5,
+      "column": 299673,
+      "context": "exchange.usdcMint}),u=hY({exchange:{phoenixProgramAddress:t.exchange.phoenixProgramAddress,logAuthorityAddress:t.exchange.logAuthorityAddress,globalConfigurationAddress:t.exchange.globalConfigurationAddress,canonicalMint:t.exchange.canonicalMint,perpAssetMap:t.exchange.perpAssetMap,globalVault:t.exchange.globalVault,withdrawQueue:t.exchange.withdrawQueue,globalTraderIndex:t.exchange.globalTraderIndex,activeTraderBuffer:t.exchange.activeTraderBuffer},trader:{authority:t.trader.authority,traderAccount:t.trader.traderAccount,destinationTokenAccount:t.trader.phoenixTokenAccount},amount:t.amount}),{instructions:[i,l,d,u,c=h0({exchange:{usdcMint:t.exchange.usdcMint,canonicalMint:t.exchange.canonicalMint,emberState:t.exchange.emberState,emberVault:t.exchange.emberVault},trader:{authority:t.trader.authority,usdcTokenAccount:t.trader.usdcTokenAccount,phoenixTokenAccount:t.trader.phoenixTokenAccount},amount:t.amount})],named:{createPhoenixAta:i,approveToken:l,createUsdcAta:d,withdrawFunds:u,emberWithdraw:c}}},buildHawkeyeViewMargin:async e=>fX(await l(e),\"margin\"),buildHawkeyeViewMarginForAsset:async e=>{let t;return fX(t={...await l(e),assetId:await d(e)},\"asset\",t.assetId)},buildHawkeyeViewLiquidationPrice:async e=>{let t;return fX(t={...await l(e),assetId:await d(e)},\"liquidation\",t.assetId)},buildHawkeyeViewBbo:async e=>fJ(await u(e)),buildHawkeyeViewFunding:async e=>{let t;return fX(t={...await l(e),assetId:await d(e)},\"funding\",t.assetId)}});let _={...C};for(let e of h9){let t=C[e];_[e]=async r=>{let a=Date.now();uF(\"ix\",`${String(e)}:start`,pe(r));try{let n=await t(r);return uF(\"ix\",`${String(e)}:done`,{durationMs:Date.now()-a,...pe(r)}),n}catch(t){throw uF(\"ix\",`${String(e)}:error`,{durationMs:Date.now()-a,...pe(r),...uN(t)}),t}}}return _})({exchange:E,pda:k.pda,orderPackets:C,rpc:_,flight:e.flight});return{api:k,pda:k.pda,auth:A,sessionManager:v,streams:P,exchange:E,marketData:()=>(n||(n=new h_({exchange:E,marketStats:P?.marketStats})),n),orderbooks:()=>(i||(i=new hz({api:{getOrderbook:(e,t)=>k.orderbook().getOrderbook(e,t)},l2Book:P?.l2Book})),i),orderPackets:C,ixs:M,rpc:_,dispose:()=>{n?.close(),i?.close(),E.close(),P?.close(),k.dispose()}}})({apiUrl:e.NEXT_PUBLIC_PHOENIX_API_URL,rpcUrl:e.NEXT_PUBLIC_SOLANA_RPC_URL,pdaCache:{maxEntries:1024},exchangeMetadata:{stream:!0},...t?{flight:{builderAuthority:t,builderPdaIndex:0,builderSubaccountIndex:0}}:{}})}()),i.current),[]),T=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await a({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signature},[a,w]),P=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await n({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signedTransaction},[n,w]),E=(0,pH.useCallback)(async()=>{if(t){b(null),c(null);try{let e=await mm(t);c(e)}catch(e){c(null),b(e instanceof Error?e.message:\"Could not check registration\")}}},[t]);(0,pH.useEffect)(()=>{if(!t){c(null),d(null),m(null),b(null);return}E()},[t,E]),(0,pH.useEffect)(()=>{if(!t)return;let e=()=>{E()};return window.addEventListener(\"focus\",e),()=>window.removeEventListener(\"focus\",e)},[t,E]),(0,pH.useEffect)(()=>{if(!t||!0!==u){d(null),o.current?.(),o.current=null,s.current=null;return}let e=((e,t={})=>new pD({...t,api:{getTraderStateSnapshot:(t,r)=>e.api.traders().getTraderStateSnapshot(t,{traderPdaIndex:r?.traderPdaIndex})},traderState:e.streams?.traderState}))(S(),{onBackgroundError:e=>{let t=e instanceof Error?e.message:\"Trader stream error\";/trader not found|404/i.test(t)||m(t)}}).resource({authority:t,traderPdaIndex:0});s.current=e,o.current=e.retain();let r=e.subscribe(e=>{d(e);let t=e.status.error?.message;t&&!/trader not found|404/i.test(t)&&m(t)});return e.ready().catch(e=>{let t=e instanceof Error?e.message:\"Trader state unavailable\";/trader not found|404/i.test(t)||m(t)}),()=>{r(),o.current?.(),o.current=null,s.current=null}},[t,u,S]);let C=(0,pH.useCallback)(async()=>{if(!t)throw Error(\"Sign in first\");if(!pJ())throw Error(\"Phoenix builder authority is not configured\");h(!0),m(null);try{await mg(S(),t,P),c(!0),b(null),await s.current?.refresh()}catch(r){if(r instanceof mi){c(!0),b(null),m(null);return}let e=r instanceof Error?r.message:\"Registration failed\";if(m(e),ms(e)&&await mm(t)){c(!0),b(null),m(null);return}throw r}finally{h(!1)}},[t,S,P]),_=(0,pH.useCallback)(async()=>{await E()},[E]),M=(0,pH.useCallback)(async()=>{t&&(c(await mm(t)),b(null),await s.current?.refresh())},[t]),L=(0,pH.useCallback)(()=>{s.current?.reconnect()},[]),B=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildDepositIxs({authority:t,amount:a});return mp(n,t,T,\"deposit\")},[t,S,T]),O=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildWithdrawIxs({authority:t,amount:a});return mp(n,t,T,\"withdraw\")},[t,S,T]),R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}},[t,S,u,T]),U=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");return mp(await S().ixs.buildCancelAll({authority:t,symbol:i1(e)}),t,T,\"cancel\")},[t,S,T]),N=(0,pH.useCallback)(async e=>{t&&x((await S().api.funding().getTraderFundingHistory(t,{symbol:e,limit:20})).events.map(p0))},[t,S]),F=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let[t,r]of Object.entries(l.subaccountsByIndex)){let a=Number(t);for(let t of Object.values(r.positionsBySymbol??{})){let n=v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}let r=Math.abs(t);if(r<=0)return null;let a=Math.abs(pZ(e.virtualQuotePositionLots));return a<=0?null:a/r}(e,o),f=(e.takeProfitTriggers?.length??0)>0||(e.stopLossTriggers?.length??0)>0||(e.conditionalTakeProfitTriggers?.length??0)>0||(e.conditionalStopLossTriggers?.length??0)>0;return{symbol:e.symbol,side:l,sizeUnits:d,sizeUsd:null!=u&&u>0?d*u:null,baseLots:a,entryPriceUsd:c,markPriceUsd:u,unrealizedPnlUsd:null,liquidationPriceUsd:null,marginUsd:null,leverage:null,marginMode:0===t?\"cross\":\"isolated\",fundingUsd:pZ(e.unsettledFundingQuoteLots),hasTpSl:f,subaccountIndex:t}}(t,a,{baseLotsDecimals:n?.baseLotsDecimals,markPriceUsd:n?.markPrice});e.push(ma(i,{market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers},subaccountCollateral:r.collateral}))}}return e},[v,l]),q=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of Object.entries(t.ordersBySymbol??{}))for(let t of Object.values(a.ordersBySequence??{}))e.push({...{symbol:\"\",side:t.side?.toLowerCase()===\"ask\"?\"sell\":\"buy\",priceUsd:pX(t.priceUsd),sizeRemaining:null!=t.sizeRemainingUnits?pX(t.sizeRemainingUnits):pX(t.sizeRemainingLots),orderSequenceNumber:t.orderSequenceNumber,reduceOnly:!!t.reduceOnly},symbol:r});return e},[l]),D=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.tradeHistory??[]).entries())e.push(p6(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),j=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.orderHistory??[]).entries())e.push(p3(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),z=(0,pH.useMemo)(()=>{let e=l?.subaccountsByIndex?.[0];return e?.collateral?p1(e.collateral):null},[l]),$=(0,pH.useMemo)(()=>mn({collateralUsd:z,positions:F}),[z,F]),H=(0,pH.useMemo)(()=>({ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e})}pJ(),e.s([\"PhoenixTraderProvider\",0,function({children:e}){return(0,I.jsx)(my,{children:e})},\"usePhoenixTrader\",0,function(){let e=(0,pH.useContext)(mb);if(!e)throw Error(\"usePhoenixTrader must be used within PhoenixTraderProvider\");return e}],93122)}]);"
+    },
+    "placeIsolatedLimitOrder": {
+      "offset": 453572,
+      "line": 5,
+      "column": 300785,
+      "context": "let t;return fX(t={...await l(e),assetId:await d(e)},\"asset\",t.assetId)},buildHawkeyeViewLiquidationPrice:async e=>{let t;return fX(t={...await l(e),assetId:await d(e)},\"liquidation\",t.assetId)},buildHawkeyeViewBbo:async e=>fJ(await u(e)),buildHawkeyeViewFunding:async e=>{let t;return fX(t={...await l(e),assetId:await d(e)},\"funding\",t.assetId)}});let _={...C};for(let e of h9){let t=C[e];_[e]=async r=>{let a=Date.now();uF(\"ix\",`${String(e)}:start`,pe(r));try{let n=await t(r);return uF(\"ix\",`${String(e)}:done`,{durationMs:Date.now()-a,...pe(r)}),n}catch(t){throw uF(\"ix\",`${String(e)}:error`,{durationMs:Date.now()-a,...pe(r),...uN(t)}),t}}}return _})({exchange:E,pda:k.pda,orderPackets:C,rpc:_,flight:e.flight});return{api:k,pda:k.pda,auth:A,sessionManager:v,streams:P,exchange:E,marketData:()=>(n||(n=new h_({exchange:E,marketStats:P?.marketStats})),n),orderbooks:()=>(i||(i=new hz({api:{getOrderbook:(e,t)=>k.orderbook().getOrderbook(e,t)},l2Book:P?.l2Book})),i),orderPackets:C,ixs:M,rpc:_,dispose:()=>{n?.close(),i?.close(),E.close(),P?.close(),k.dispose()}}})({apiUrl:e.NEXT_PUBLIC_PHOENIX_API_URL,rpcUrl:e.NEXT_PUBLIC_SOLANA_RPC_URL,pdaCache:{maxEntries:1024},exchangeMetadata:{stream:!0},...t?{flight:{builderAuthority:t,builderPdaIndex:0,builderSubaccountIndex:0}}:{}})}()),i.current),[]),T=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await a({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signature},[a,w]),P=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await n({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signedTransaction},[n,w]),E=(0,pH.useCallback)(async()=>{if(t){b(null),c(null);try{let e=await mm(t);c(e)}catch(e){c(null),b(e instanceof Error?e.message:\"Could not check registration\")}}},[t]);(0,pH.useEffect)(()=>{if(!t){c(null),d(null),m(null),b(null);return}E()},[t,E]),(0,pH.useEffect)(()=>{if(!t)return;let e=()=>{E()};return window.addEventListener(\"focus\",e),()=>window.removeEventListener(\"focus\",e)},[t,E]),(0,pH.useEffect)(()=>{if(!t||!0!==u){d(null),o.current?.(),o.current=null,s.current=null;return}let e=((e,t={})=>new pD({...t,api:{getTraderStateSnapshot:(t,r)=>e.api.traders().getTraderStateSnapshot(t,{traderPdaIndex:r?.traderPdaIndex})},traderState:e.streams?.traderState}))(S(),{onBackgroundError:e=>{let t=e instanceof Error?e.message:\"Trader stream error\";/trader not found|404/i.test(t)||m(t)}}).resource({authority:t,traderPdaIndex:0});s.current=e,o.current=e.retain();let r=e.subscribe(e=>{d(e);let t=e.status.error?.message;t&&!/trader not found|404/i.test(t)&&m(t)});return e.ready().catch(e=>{let t=e instanceof Error?e.message:\"Trader state unavailable\";/trader not found|404/i.test(t)||m(t)}),()=>{r(),o.current?.(),o.current=null,s.current=null}},[t,u,S]);let C=(0,pH.useCallback)(async()=>{if(!t)throw Error(\"Sign in first\");if(!pJ())throw Error(\"Phoenix builder authority is not configured\");h(!0),m(null);try{await mg(S(),t,P),c(!0),b(null),await s.current?.refresh()}catch(r){if(r instanceof mi){c(!0),b(null),m(null);return}let e=r instanceof Error?r.message:\"Registration failed\";if(m(e),ms(e)&&await mm(t)){c(!0),b(null),m(null);return}throw r}finally{h(!1)}},[t,S,P]),_=(0,pH.useCallback)(async()=>{await E()},[E]),M=(0,pH.useCallback)(async()=>{t&&(c(await mm(t)),b(null),await s.current?.refresh())},[t]),L=(0,pH.useCallback)(()=>{s.current?.reconnect()},[]),B=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildDepositIxs({authority:t,amount:a});return mp(n,t,T,\"deposit\")},[t,S,T]),O=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildWithdrawIxs({authority:t,amount:a});return mp(n,t,T,\"withdraw\")},[t,S,T]),R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}},[t,S,u,T]),U=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");return mp(await S().ixs.buildCancelAll({authority:t,symbol:i1(e)}),t,T,\"cancel\")},[t,S,T]),N=(0,pH.useCallback)(async e=>{t&&x((await S().api.funding().getTraderFundingHistory(t,{symbol:e,limit:20})).events.map(p0))},[t,S]),F=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let[t,r]of Object.entries(l.subaccountsByIndex)){let a=Number(t);for(let t of Object.values(r.positionsBySymbol??{})){let n=v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}let r=Math.abs(t);if(r<=0)return null;let a=Math.abs(pZ(e.virtualQuotePositionLots));return a<=0?null:a/r}(e,o),f=(e.takeProfitTriggers?.length??0)>0||(e.stopLossTriggers?.length??0)>0||(e.conditionalTakeProfitTriggers?.length??0)>0||(e.conditionalStopLossTriggers?.length??0)>0;return{symbol:e.symbol,side:l,sizeUnits:d,sizeUsd:null!=u&&u>0?d*u:null,baseLots:a,entryPriceUsd:c,markPriceUsd:u,unrealizedPnlUsd:null,liquidationPriceUsd:null,marginUsd:null,leverage:null,marginMode:0===t?\"cross\":\"isolated\",fundingUsd:pZ(e.unsettledFundingQuoteLots),hasTpSl:f,subaccountIndex:t}}(t,a,{baseLotsDecimals:n?.baseLotsDecimals,markPriceUsd:n?.markPrice});e.push(ma(i,{market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers},subaccountCollateral:r.collateral}))}}return e},[v,l]),q=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of Object.entries(t.ordersBySymbol??{}))for(let t of Object.values(a.ordersBySequence??{}))e.push({...{symbol:\"\",side:t.side?.toLowerCase()===\"ask\"?\"sell\":\"buy\",priceUsd:pX(t.priceUsd),sizeRemaining:null!=t.sizeRemainingUnits?pX(t.sizeRemainingUnits):pX(t.sizeRemainingLots),orderSequenceNumber:t.orderSequenceNumber,reduceOnly:!!t.reduceOnly},symbol:r});return e},[l]),D=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.tradeHistory??[]).entries())e.push(p6(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),j=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.orderHistory??[]).entries())e.push(p3(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),z=(0,pH.useMemo)(()=>{let e=l?.subaccountsByIndex?.[0];return e?.collateral?p1(e.collateral):null},[l]),$=(0,pH.useMemo)(()=>mn({collateralUsd:z,positions:F}),[z,F]),H=(0,pH.useMemo)(()=>({ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e})}pJ(),e.s([\"PhoenixTraderProvider\",0,function({children:e}){return(0,I.jsx)(my,{children:e})},\"usePhoenixTrader\",0,function(){let e=(0,pH.useContext)(mb);if(!e)throw Error(\"usePhoenixTrader must be used within PhoenixTraderProvider\");return e}],93122)}]);"
+    },
+    "placeIsolatedMarketOrder": {
+      "offset": 453798,
+      "line": 5,
+      "column": 301011,
+      "context": "(await u(e)),buildHawkeyeViewFunding:async e=>{let t;return fX(t={...await l(e),assetId:await d(e)},\"funding\",t.assetId)}});let _={...C};for(let e of h9){let t=C[e];_[e]=async r=>{let a=Date.now();uF(\"ix\",`${String(e)}:start`,pe(r));try{let n=await t(r);return uF(\"ix\",`${String(e)}:done`,{durationMs:Date.now()-a,...pe(r)}),n}catch(t){throw uF(\"ix\",`${String(e)}:error`,{durationMs:Date.now()-a,...pe(r),...uN(t)}),t}}}return _})({exchange:E,pda:k.pda,orderPackets:C,rpc:_,flight:e.flight});return{api:k,pda:k.pda,auth:A,sessionManager:v,streams:P,exchange:E,marketData:()=>(n||(n=new h_({exchange:E,marketStats:P?.marketStats})),n),orderbooks:()=>(i||(i=new hz({api:{getOrderbook:(e,t)=>k.orderbook().getOrderbook(e,t)},l2Book:P?.l2Book})),i),orderPackets:C,ixs:M,rpc:_,dispose:()=>{n?.close(),i?.close(),E.close(),P?.close(),k.dispose()}}})({apiUrl:e.NEXT_PUBLIC_PHOENIX_API_URL,rpcUrl:e.NEXT_PUBLIC_SOLANA_RPC_URL,pdaCache:{maxEntries:1024},exchangeMetadata:{stream:!0},...t?{flight:{builderAuthority:t,builderPdaIndex:0,builderSubaccountIndex:0}}:{}})}()),i.current),[]),T=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await a({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signature},[a,w]),P=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await n({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signedTransaction},[n,w]),E=(0,pH.useCallback)(async()=>{if(t){b(null),c(null);try{let e=await mm(t);c(e)}catch(e){c(null),b(e instanceof Error?e.message:\"Could not check registration\")}}},[t]);(0,pH.useEffect)(()=>{if(!t){c(null),d(null),m(null),b(null);return}E()},[t,E]),(0,pH.useEffect)(()=>{if(!t)return;let e=()=>{E()};return window.addEventListener(\"focus\",e),()=>window.removeEventListener(\"focus\",e)},[t,E]),(0,pH.useEffect)(()=>{if(!t||!0!==u){d(null),o.current?.(),o.current=null,s.current=null;return}let e=((e,t={})=>new pD({...t,api:{getTraderStateSnapshot:(t,r)=>e.api.traders().getTraderStateSnapshot(t,{traderPdaIndex:r?.traderPdaIndex})},traderState:e.streams?.traderState}))(S(),{onBackgroundError:e=>{let t=e instanceof Error?e.message:\"Trader stream error\";/trader not found|404/i.test(t)||m(t)}}).resource({authority:t,traderPdaIndex:0});s.current=e,o.current=e.retain();let r=e.subscribe(e=>{d(e);let t=e.status.error?.message;t&&!/trader not found|404/i.test(t)&&m(t)});return e.ready().catch(e=>{let t=e instanceof Error?e.message:\"Trader state unavailable\";/trader not found|404/i.test(t)||m(t)}),()=>{r(),o.current?.(),o.current=null,s.current=null}},[t,u,S]);let C=(0,pH.useCallback)(async()=>{if(!t)throw Error(\"Sign in first\");if(!pJ())throw Error(\"Phoenix builder authority is not configured\");h(!0),m(null);try{await mg(S(),t,P),c(!0),b(null),await s.current?.refresh()}catch(r){if(r instanceof mi){c(!0),b(null),m(null);return}let e=r instanceof Error?r.message:\"Registration failed\";if(m(e),ms(e)&&await mm(t)){c(!0),b(null),m(null);return}throw r}finally{h(!1)}},[t,S,P]),_=(0,pH.useCallback)(async()=>{await E()},[E]),M=(0,pH.useCallback)(async()=>{t&&(c(await mm(t)),b(null),await s.current?.refresh())},[t]),L=(0,pH.useCallback)(()=>{s.current?.reconnect()},[]),B=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildDepositIxs({authority:t,amount:a});return mp(n,t,T,\"deposit\")},[t,S,T]),O=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildWithdrawIxs({authority:t,amount:a});return mp(n,t,T,\"withdraw\")},[t,S,T]),R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}},[t,S,u,T]),U=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");return mp(await S().ixs.buildCancelAll({authority:t,symbol:i1(e)}),t,T,\"cancel\")},[t,S,T]),N=(0,pH.useCallback)(async e=>{t&&x((await S().api.funding().getTraderFundingHistory(t,{symbol:e,limit:20})).events.map(p0))},[t,S]),F=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let[t,r]of Object.entries(l.subaccountsByIndex)){let a=Number(t);for(let t of Object.values(r.positionsBySymbol??{})){let n=v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}let r=Math.abs(t);if(r<=0)return null;let a=Math.abs(pZ(e.virtualQuotePositionLots));return a<=0?null:a/r}(e,o),f=(e.takeProfitTriggers?.length??0)>0||(e.stopLossTriggers?.length??0)>0||(e.conditionalTakeProfitTriggers?.length??0)>0||(e.conditionalStopLossTriggers?.length??0)>0;return{symbol:e.symbol,side:l,sizeUnits:d,sizeUsd:null!=u&&u>0?d*u:null,baseLots:a,entryPriceUsd:c,markPriceUsd:u,unrealizedPnlUsd:null,liquidationPriceUsd:null,marginUsd:null,leverage:null,marginMode:0===t?\"cross\":\"isolated\",fundingUsd:pZ(e.unsettledFundingQuoteLots),hasTpSl:f,subaccountIndex:t}}(t,a,{baseLotsDecimals:n?.baseLotsDecimals,markPriceUsd:n?.markPrice});e.push(ma(i,{market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers},subaccountCollateral:r.collateral}))}}return e},[v,l]),q=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of Object.entries(t.ordersBySymbol??{}))for(let t of Object.values(a.ordersBySequence??{}))e.push({...{symbol:\"\",side:t.side?.toLowerCase()===\"ask\"?\"sell\":\"buy\",priceUsd:pX(t.priceUsd),sizeRemaining:null!=t.sizeRemainingUnits?pX(t.sizeRemainingUnits):pX(t.sizeRemainingLots),orderSequenceNumber:t.orderSequenceNumber,reduceOnly:!!t.reduceOnly},symbol:r});return e},[l]),D=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.tradeHistory??[]).entries())e.push(p6(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),j=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.orderHistory??[]).entries())e.push(p3(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),z=(0,pH.useMemo)(()=>{let e=l?.subaccountsByIndex?.[0];return e?.collateral?p1(e.collateral):null},[l]),$=(0,pH.useMemo)(()=>mn({collateralUsd:z,positions:F}),[z,F]),H=(0,pH.useMemo)(()=>({ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e})}pJ(),e.s([\"PhoenixTraderProvider\",0,function({children:e}){return(0,I.jsx)(my,{children:e})},\"usePhoenixTrader\",0,function(){let e=(0,pH.useContext)(mb);if(!e)throw Error(\"usePhoenixTrader must be used within PhoenixTraderProvider\");return e}],93122)}]);"
+    },
+    "buildLimitOrderPacket": {
+      "offset": 454134,
+      "line": 5,
+      "column": 301347,
+      "context": "throw uF(\"ix\",`${String(e)}:error`,{durationMs:Date.now()-a,...pe(r),...uN(t)}),t}}}return _})({exchange:E,pda:k.pda,orderPackets:C,rpc:_,flight:e.flight});return{api:k,pda:k.pda,auth:A,sessionManager:v,streams:P,exchange:E,marketData:()=>(n||(n=new h_({exchange:E,marketStats:P?.marketStats})),n),orderbooks:()=>(i||(i=new hz({api:{getOrderbook:(e,t)=>k.orderbook().getOrderbook(e,t)},l2Book:P?.l2Book})),i),orderPackets:C,ixs:M,rpc:_,dispose:()=>{n?.close(),i?.close(),E.close(),P?.close(),k.dispose()}}})({apiUrl:e.NEXT_PUBLIC_PHOENIX_API_URL,rpcUrl:e.NEXT_PUBLIC_SOLANA_RPC_URL,pdaCache:{maxEntries:1024},exchangeMetadata:{stream:!0},...t?{flight:{builderAuthority:t,builderPdaIndex:0,builderSubaccountIndex:0}}:{}})}()),i.current),[]),T=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await a({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signature},[a,w]),P=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await n({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signedTransaction},[n,w]),E=(0,pH.useCallback)(async()=>{if(t){b(null),c(null);try{let e=await mm(t);c(e)}catch(e){c(null),b(e instanceof Error?e.message:\"Could not check registration\")}}},[t]);(0,pH.useEffect)(()=>{if(!t){c(null),d(null),m(null),b(null);return}E()},[t,E]),(0,pH.useEffect)(()=>{if(!t)return;let e=()=>{E()};return window.addEventListener(\"focus\",e),()=>window.removeEventListener(\"focus\",e)},[t,E]),(0,pH.useEffect)(()=>{if(!t||!0!==u){d(null),o.current?.(),o.current=null,s.current=null;return}let e=((e,t={})=>new pD({...t,api:{getTraderStateSnapshot:(t,r)=>e.api.traders().getTraderStateSnapshot(t,{traderPdaIndex:r?.traderPdaIndex})},traderState:e.streams?.traderState}))(S(),{onBackgroundError:e=>{let t=e instanceof Error?e.message:\"Trader stream error\";/trader not found|404/i.test(t)||m(t)}}).resource({authority:t,traderPdaIndex:0});s.current=e,o.current=e.retain();let r=e.subscribe(e=>{d(e);let t=e.status.error?.message;t&&!/trader not found|404/i.test(t)&&m(t)});return e.ready().catch(e=>{let t=e instanceof Error?e.message:\"Trader state unavailable\";/trader not found|404/i.test(t)||m(t)}),()=>{r(),o.current?.(),o.current=null,s.current=null}},[t,u,S]);let C=(0,pH.useCallback)(async()=>{if(!t)throw Error(\"Sign in first\");if(!pJ())throw Error(\"Phoenix builder authority is not configured\");h(!0),m(null);try{await mg(S(),t,P),c(!0),b(null),await s.current?.refresh()}catch(r){if(r instanceof mi){c(!0),b(null),m(null);return}let e=r instanceof Error?r.message:\"Registration failed\";if(m(e),ms(e)&&await mm(t)){c(!0),b(null),m(null);return}throw r}finally{h(!1)}},[t,S,P]),_=(0,pH.useCallback)(async()=>{await E()},[E]),M=(0,pH.useCallback)(async()=>{t&&(c(await mm(t)),b(null),await s.current?.refresh())},[t]),L=(0,pH.useCallback)(()=>{s.current?.reconnect()},[]),B=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildDepositIxs({authority:t,amount:a});return mp(n,t,T,\"deposit\")},[t,S,T]),O=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildWithdrawIxs({authority:t,amount:a});return mp(n,t,T,\"withdraw\")},[t,S,T]),R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}},[t,S,u,T]),U=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");return mp(await S().ixs.buildCancelAll({authority:t,symbol:i1(e)}),t,T,\"cancel\")},[t,S,T]),N=(0,pH.useCallback)(async e=>{t&&x((await S().api.funding().getTraderFundingHistory(t,{symbol:e,limit:20})).events.map(p0))},[t,S]),F=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let[t,r]of Object.entries(l.subaccountsByIndex)){let a=Number(t);for(let t of Object.values(r.positionsBySymbol??{})){let n=v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}let r=Math.abs(t);if(r<=0)return null;let a=Math.abs(pZ(e.virtualQuotePositionLots));return a<=0?null:a/r}(e,o),f=(e.takeProfitTriggers?.length??0)>0||(e.stopLossTriggers?.length??0)>0||(e.conditionalTakeProfitTriggers?.length??0)>0||(e.conditionalStopLossTriggers?.length??0)>0;return{symbol:e.symbol,side:l,sizeUnits:d,sizeUsd:null!=u&&u>0?d*u:null,baseLots:a,entryPriceUsd:c,markPriceUsd:u,unrealizedPnlUsd:null,liquidationPriceUsd:null,marginUsd:null,leverage:null,marginMode:0===t?\"cross\":\"isolated\",fundingUsd:pZ(e.unsettledFundingQuoteLots),hasTpSl:f,subaccountIndex:t}}(t,a,{baseLotsDecimals:n?.baseLotsDecimals,markPriceUsd:n?.markPrice});e.push(ma(i,{market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers},subaccountCollateral:r.collateral}))}}return e},[v,l]),q=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of Object.entries(t.ordersBySymbol??{}))for(let t of Object.values(a.ordersBySequence??{}))e.push({...{symbol:\"\",side:t.side?.toLowerCase()===\"ask\"?\"sell\":\"buy\",priceUsd:pX(t.priceUsd),sizeRemaining:null!=t.sizeRemainingUnits?pX(t.sizeRemainingUnits):pX(t.sizeRemainingLots),orderSequenceNumber:t.orderSequenceNumber,reduceOnly:!!t.reduceOnly},symbol:r});return e},[l]),D=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.tradeHistory??[]).entries())e.push(p6(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),j=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.orderHistory??[]).entries())e.push(p3(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),z=(0,pH.useMemo)(()=>{let e=l?.subaccountsByIndex?.[0];return e?.collateral?p1(e.collateral):null},[l]),$=(0,pH.useMemo)(()=>mn({collateralUsd:z,positions:F}),[z,F]),H=(0,pH.useMemo)(()=>({ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e})}pJ(),e.s([\"PhoenixTraderProvider\",0,function({children:e}){return(0,I.jsx)(my,{children:e})},\"usePhoenixTrader\",0,function(){let e=(0,pH.useContext)(mb);if(!e)throw Error(\"usePhoenixTrader must be used within PhoenixTraderProvider\");return e}],93122)}]);"
+    },
+    "buildPlaceLimitOrder": {
+      "offset": 454246,
+      "line": 5,
+      "column": 301459,
+      "context": ".pda,orderPackets:C,rpc:_,flight:e.flight});return{api:k,pda:k.pda,auth:A,sessionManager:v,streams:P,exchange:E,marketData:()=>(n||(n=new h_({exchange:E,marketStats:P?.marketStats})),n),orderbooks:()=>(i||(i=new hz({api:{getOrderbook:(e,t)=>k.orderbook().getOrderbook(e,t)},l2Book:P?.l2Book})),i),orderPackets:C,ixs:M,rpc:_,dispose:()=>{n?.close(),i?.close(),E.close(),P?.close(),k.dispose()}}})({apiUrl:e.NEXT_PUBLIC_PHOENIX_API_URL,rpcUrl:e.NEXT_PUBLIC_SOLANA_RPC_URL,pdaCache:{maxEntries:1024},exchangeMetadata:{stream:!0},...t?{flight:{builderAuthority:t,builderPdaIndex:0,builderSubaccountIndex:0}}:{}})}()),i.current),[]),T=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await a({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signature},[a,w]),P=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await n({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signedTransaction},[n,w]),E=(0,pH.useCallback)(async()=>{if(t){b(null),c(null);try{let e=await mm(t);c(e)}catch(e){c(null),b(e instanceof Error?e.message:\"Could not check registration\")}}},[t]);(0,pH.useEffect)(()=>{if(!t){c(null),d(null),m(null),b(null);return}E()},[t,E]),(0,pH.useEffect)(()=>{if(!t)return;let e=()=>{E()};return window.addEventListener(\"focus\",e),()=>window.removeEventListener(\"focus\",e)},[t,E]),(0,pH.useEffect)(()=>{if(!t||!0!==u){d(null),o.current?.(),o.current=null,s.current=null;return}let e=((e,t={})=>new pD({...t,api:{getTraderStateSnapshot:(t,r)=>e.api.traders().getTraderStateSnapshot(t,{traderPdaIndex:r?.traderPdaIndex})},traderState:e.streams?.traderState}))(S(),{onBackgroundError:e=>{let t=e instanceof Error?e.message:\"Trader stream error\";/trader not found|404/i.test(t)||m(t)}}).resource({authority:t,traderPdaIndex:0});s.current=e,o.current=e.retain();let r=e.subscribe(e=>{d(e);let t=e.status.error?.message;t&&!/trader not found|404/i.test(t)&&m(t)});return e.ready().catch(e=>{let t=e instanceof Error?e.message:\"Trader state unavailable\";/trader not found|404/i.test(t)||m(t)}),()=>{r(),o.current?.(),o.current=null,s.current=null}},[t,u,S]);let C=(0,pH.useCallback)(async()=>{if(!t)throw Error(\"Sign in first\");if(!pJ())throw Error(\"Phoenix builder authority is not configured\");h(!0),m(null);try{await mg(S(),t,P),c(!0),b(null),await s.current?.refresh()}catch(r){if(r instanceof mi){c(!0),b(null),m(null);return}let e=r instanceof Error?r.message:\"Registration failed\";if(m(e),ms(e)&&await mm(t)){c(!0),b(null),m(null);return}throw r}finally{h(!1)}},[t,S,P]),_=(0,pH.useCallback)(async()=>{await E()},[E]),M=(0,pH.useCallback)(async()=>{t&&(c(await mm(t)),b(null),await s.current?.refresh())},[t]),L=(0,pH.useCallback)(()=>{s.current?.reconnect()},[]),B=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildDepositIxs({authority:t,amount:a});return mp(n,t,T,\"deposit\")},[t,S,T]),O=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildWithdrawIxs({authority:t,amount:a});return mp(n,t,T,\"withdraw\")},[t,S,T]),R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}},[t,S,u,T]),U=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");return mp(await S().ixs.buildCancelAll({authority:t,symbol:i1(e)}),t,T,\"cancel\")},[t,S,T]),N=(0,pH.useCallback)(async e=>{t&&x((await S().api.funding().getTraderFundingHistory(t,{symbol:e,limit:20})).events.map(p0))},[t,S]),F=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let[t,r]of Object.entries(l.subaccountsByIndex)){let a=Number(t);for(let t of Object.values(r.positionsBySymbol??{})){let n=v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}let r=Math.abs(t);if(r<=0)return null;let a=Math.abs(pZ(e.virtualQuotePositionLots));return a<=0?null:a/r}(e,o),f=(e.takeProfitTriggers?.length??0)>0||(e.stopLossTriggers?.length??0)>0||(e.conditionalTakeProfitTriggers?.length??0)>0||(e.conditionalStopLossTriggers?.length??0)>0;return{symbol:e.symbol,side:l,sizeUnits:d,sizeUsd:null!=u&&u>0?d*u:null,baseLots:a,entryPriceUsd:c,markPriceUsd:u,unrealizedPnlUsd:null,liquidationPriceUsd:null,marginUsd:null,leverage:null,marginMode:0===t?\"cross\":\"isolated\",fundingUsd:pZ(e.unsettledFundingQuoteLots),hasTpSl:f,subaccountIndex:t}}(t,a,{baseLotsDecimals:n?.baseLotsDecimals,markPriceUsd:n?.markPrice});e.push(ma(i,{market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers},subaccountCollateral:r.collateral}))}}return e},[v,l]),q=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of Object.entries(t.ordersBySymbol??{}))for(let t of Object.values(a.ordersBySequence??{}))e.push({...{symbol:\"\",side:t.side?.toLowerCase()===\"ask\"?\"sell\":\"buy\",priceUsd:pX(t.priceUsd),sizeRemaining:null!=t.sizeRemainingUnits?pX(t.sizeRemainingUnits):pX(t.sizeRemainingLots),orderSequenceNumber:t.orderSequenceNumber,reduceOnly:!!t.reduceOnly},symbol:r});return e},[l]),D=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.tradeHistory??[]).entries())e.push(p6(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),j=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.orderHistory??[]).entries())e.push(p3(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),z=(0,pH.useMemo)(()=>{let e=l?.subaccountsByIndex?.[0];return e?.collateral?p1(e.collateral):null},[l]),$=(0,pH.useMemo)(()=>mn({collateralUsd:z,positions:F}),[z,F]),H=(0,pH.useMemo)(()=>({ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e})}pJ(),e.s([\"PhoenixTraderProvider\",0,function({children:e}){return(0,I.jsx)(my,{children:e})},\"usePhoenixTrader\",0,function(){let e=(0,pH.useContext)(mb);if(!e)throw Error(\"usePhoenixTrader must be used within PhoenixTraderProvider\");return e}],93122)}]);"
+    },
+    "buildMarketOrderPacket": {
+      "offset": 454379,
+      "line": 5,
+      "column": 301592,
+      "context": "=new h_({exchange:E,marketStats:P?.marketStats})),n),orderbooks:()=>(i||(i=new hz({api:{getOrderbook:(e,t)=>k.orderbook().getOrderbook(e,t)},l2Book:P?.l2Book})),i),orderPackets:C,ixs:M,rpc:_,dispose:()=>{n?.close(),i?.close(),E.close(),P?.close(),k.dispose()}}})({apiUrl:e.NEXT_PUBLIC_PHOENIX_API_URL,rpcUrl:e.NEXT_PUBLIC_SOLANA_RPC_URL,pdaCache:{maxEntries:1024},exchangeMetadata:{stream:!0},...t?{flight:{builderAuthority:t,builderPdaIndex:0,builderSubaccountIndex:0}}:{}})}()),i.current),[]),T=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await a({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signature},[a,w]),P=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await n({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signedTransaction},[n,w]),E=(0,pH.useCallback)(async()=>{if(t){b(null),c(null);try{let e=await mm(t);c(e)}catch(e){c(null),b(e instanceof Error?e.message:\"Could not check registration\")}}},[t]);(0,pH.useEffect)(()=>{if(!t){c(null),d(null),m(null),b(null);return}E()},[t,E]),(0,pH.useEffect)(()=>{if(!t)return;let e=()=>{E()};return window.addEventListener(\"focus\",e),()=>window.removeEventListener(\"focus\",e)},[t,E]),(0,pH.useEffect)(()=>{if(!t||!0!==u){d(null),o.current?.(),o.current=null,s.current=null;return}let e=((e,t={})=>new pD({...t,api:{getTraderStateSnapshot:(t,r)=>e.api.traders().getTraderStateSnapshot(t,{traderPdaIndex:r?.traderPdaIndex})},traderState:e.streams?.traderState}))(S(),{onBackgroundError:e=>{let t=e instanceof Error?e.message:\"Trader stream error\";/trader not found|404/i.test(t)||m(t)}}).resource({authority:t,traderPdaIndex:0});s.current=e,o.current=e.retain();let r=e.subscribe(e=>{d(e);let t=e.status.error?.message;t&&!/trader not found|404/i.test(t)&&m(t)});return e.ready().catch(e=>{let t=e instanceof Error?e.message:\"Trader state unavailable\";/trader not found|404/i.test(t)||m(t)}),()=>{r(),o.current?.(),o.current=null,s.current=null}},[t,u,S]);let C=(0,pH.useCallback)(async()=>{if(!t)throw Error(\"Sign in first\");if(!pJ())throw Error(\"Phoenix builder authority is not configured\");h(!0),m(null);try{await mg(S(),t,P),c(!0),b(null),await s.current?.refresh()}catch(r){if(r instanceof mi){c(!0),b(null),m(null);return}let e=r instanceof Error?r.message:\"Registration failed\";if(m(e),ms(e)&&await mm(t)){c(!0),b(null),m(null);return}throw r}finally{h(!1)}},[t,S,P]),_=(0,pH.useCallback)(async()=>{await E()},[E]),M=(0,pH.useCallback)(async()=>{t&&(c(await mm(t)),b(null),await s.current?.refresh())},[t]),L=(0,pH.useCallback)(()=>{s.current?.reconnect()},[]),B=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildDepositIxs({authority:t,amount:a});return mp(n,t,T,\"deposit\")},[t,S,T]),O=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildWithdrawIxs({authority:t,amount:a});return mp(n,t,T,\"withdraw\")},[t,S,T]),R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}},[t,S,u,T]),U=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");return mp(await S().ixs.buildCancelAll({authority:t,symbol:i1(e)}),t,T,\"cancel\")},[t,S,T]),N=(0,pH.useCallback)(async e=>{t&&x((await S().api.funding().getTraderFundingHistory(t,{symbol:e,limit:20})).events.map(p0))},[t,S]),F=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let[t,r]of Object.entries(l.subaccountsByIndex)){let a=Number(t);for(let t of Object.values(r.positionsBySymbol??{})){let n=v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}let r=Math.abs(t);if(r<=0)return null;let a=Math.abs(pZ(e.virtualQuotePositionLots));return a<=0?null:a/r}(e,o),f=(e.takeProfitTriggers?.length??0)>0||(e.stopLossTriggers?.length??0)>0||(e.conditionalTakeProfitTriggers?.length??0)>0||(e.conditionalStopLossTriggers?.length??0)>0;return{symbol:e.symbol,side:l,sizeUnits:d,sizeUsd:null!=u&&u>0?d*u:null,baseLots:a,entryPriceUsd:c,markPriceUsd:u,unrealizedPnlUsd:null,liquidationPriceUsd:null,marginUsd:null,leverage:null,marginMode:0===t?\"cross\":\"isolated\",fundingUsd:pZ(e.unsettledFundingQuoteLots),hasTpSl:f,subaccountIndex:t}}(t,a,{baseLotsDecimals:n?.baseLotsDecimals,markPriceUsd:n?.markPrice});e.push(ma(i,{market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers},subaccountCollateral:r.collateral}))}}return e},[v,l]),q=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of Object.entries(t.ordersBySymbol??{}))for(let t of Object.values(a.ordersBySequence??{}))e.push({...{symbol:\"\",side:t.side?.toLowerCase()===\"ask\"?\"sell\":\"buy\",priceUsd:pX(t.priceUsd),sizeRemaining:null!=t.sizeRemainingUnits?pX(t.sizeRemainingUnits):pX(t.sizeRemainingLots),orderSequenceNumber:t.orderSequenceNumber,reduceOnly:!!t.reduceOnly},symbol:r});return e},[l]),D=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.tradeHistory??[]).entries())e.push(p6(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),j=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.orderHistory??[]).entries())e.push(p3(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),z=(0,pH.useMemo)(()=>{let e=l?.subaccountsByIndex?.[0];return e?.collateral?p1(e.collateral):null},[l]),$=(0,pH.useMemo)(()=>mn({collateralUsd:z,positions:F}),[z,F]),H=(0,pH.useMemo)(()=>({ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e})}pJ(),e.s([\"PhoenixTraderProvider\",0,function({children:e}){return(0,I.jsx)(my,{children:e})},\"usePhoenixTrader\",0,function(){let e=(0,pH.useContext)(mb);if(!e)throw Error(\"usePhoenixTrader must be used within PhoenixTraderProvider\");return e}],93122)}]);"
+    },
+    "buildPlaceMarketOrder": {
+      "offset": 454470,
+      "line": 5,
+      "column": 301683,
+      "context": "Orderbook:(e,t)=>k.orderbook().getOrderbook(e,t)},l2Book:P?.l2Book})),i),orderPackets:C,ixs:M,rpc:_,dispose:()=>{n?.close(),i?.close(),E.close(),P?.close(),k.dispose()}}})({apiUrl:e.NEXT_PUBLIC_PHOENIX_API_URL,rpcUrl:e.NEXT_PUBLIC_SOLANA_RPC_URL,pdaCache:{maxEntries:1024},exchangeMetadata:{stream:!0},...t?{flight:{builderAuthority:t,builderPdaIndex:0,builderSubaccountIndex:0}}:{}})}()),i.current),[]),T=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await a({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signature},[a,w]),P=(0,pH.useCallback)(async e=>{if(!w)throw Error(\"Connect your Sana wallet to continue\");return(await n({transaction:e,wallet:w,chain:\"solana:mainnet\",options:{uiOptions:{showWalletUIs:!1}}})).signedTransaction},[n,w]),E=(0,pH.useCallback)(async()=>{if(t){b(null),c(null);try{let e=await mm(t);c(e)}catch(e){c(null),b(e instanceof Error?e.message:\"Could not check registration\")}}},[t]);(0,pH.useEffect)(()=>{if(!t){c(null),d(null),m(null),b(null);return}E()},[t,E]),(0,pH.useEffect)(()=>{if(!t)return;let e=()=>{E()};return window.addEventListener(\"focus\",e),()=>window.removeEventListener(\"focus\",e)},[t,E]),(0,pH.useEffect)(()=>{if(!t||!0!==u){d(null),o.current?.(),o.current=null,s.current=null;return}let e=((e,t={})=>new pD({...t,api:{getTraderStateSnapshot:(t,r)=>e.api.traders().getTraderStateSnapshot(t,{traderPdaIndex:r?.traderPdaIndex})},traderState:e.streams?.traderState}))(S(),{onBackgroundError:e=>{let t=e instanceof Error?e.message:\"Trader stream error\";/trader not found|404/i.test(t)||m(t)}}).resource({authority:t,traderPdaIndex:0});s.current=e,o.current=e.retain();let r=e.subscribe(e=>{d(e);let t=e.status.error?.message;t&&!/trader not found|404/i.test(t)&&m(t)});return e.ready().catch(e=>{let t=e instanceof Error?e.message:\"Trader state unavailable\";/trader not found|404/i.test(t)||m(t)}),()=>{r(),o.current?.(),o.current=null,s.current=null}},[t,u,S]);let C=(0,pH.useCallback)(async()=>{if(!t)throw Error(\"Sign in first\");if(!pJ())throw Error(\"Phoenix builder authority is not configured\");h(!0),m(null);try{await mg(S(),t,P),c(!0),b(null),await s.current?.refresh()}catch(r){if(r instanceof mi){c(!0),b(null),m(null);return}let e=r instanceof Error?r.message:\"Registration failed\";if(m(e),ms(e)&&await mm(t)){c(!0),b(null),m(null);return}throw r}finally{h(!1)}},[t,S,P]),_=(0,pH.useCallback)(async()=>{await E()},[E]),M=(0,pH.useCallback)(async()=>{t&&(c(await mm(t)),b(null),await s.current?.refresh())},[t]),L=(0,pH.useCallback)(()=>{s.current?.reconnect()},[]),B=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildDepositIxs({authority:t,amount:a});return mp(n,t,T,\"deposit\")},[t,S,T]),O=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");let r=S(),a=p2(e),{instructions:n}=await r.ixs.buildWithdrawIxs({authority:t,amount:a});return mp(n,t,T,\"withdraw\")},[t,S,T]),R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}},[t,S,u,T]),U=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");return mp(await S().ixs.buildCancelAll({authority:t,symbol:i1(e)}),t,T,\"cancel\")},[t,S,T]),N=(0,pH.useCallback)(async e=>{t&&x((await S().api.funding().getTraderFundingHistory(t,{symbol:e,limit:20})).events.map(p0))},[t,S]),F=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let[t,r]of Object.entries(l.subaccountsByIndex)){let a=Number(t);for(let t of Object.values(r.positionsBySymbol??{})){let n=v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd);if(t>0)return t}let r=Math.abs(t);if(r<=0)return null;let a=Math.abs(pZ(e.virtualQuotePositionLots));return a<=0?null:a/r}(e,o),f=(e.takeProfitTriggers?.length??0)>0||(e.stopLossTriggers?.length??0)>0||(e.conditionalTakeProfitTriggers?.length??0)>0||(e.conditionalStopLossTriggers?.length??0)>0;return{symbol:e.symbol,side:l,sizeUnits:d,sizeUsd:null!=u&&u>0?d*u:null,baseLots:a,entryPriceUsd:c,markPriceUsd:u,unrealizedPnlUsd:null,liquidationPriceUsd:null,marginUsd:null,leverage:null,marginMode:0===t?\"cross\":\"isolated\",fundingUsd:pZ(e.unsettledFundingQuoteLots),hasTpSl:f,subaccountIndex:t}}(t,a,{baseLotsDecimals:n?.baseLotsDecimals,markPriceUsd:n?.markPrice});e.push(ma(i,{market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers},subaccountCollateral:r.collateral}))}}return e},[v,l]),q=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of Object.entries(t.ordersBySymbol??{}))for(let t of Object.values(a.ordersBySequence??{}))e.push({...{symbol:\"\",side:t.side?.toLowerCase()===\"ask\"?\"sell\":\"buy\",priceUsd:pX(t.priceUsd),sizeRemaining:null!=t.sizeRemainingUnits?pX(t.sizeRemainingUnits):pX(t.sizeRemainingLots),orderSequenceNumber:t.orderSequenceNumber,reduceOnly:!!t.reduceOnly},symbol:r});return e},[l]),D=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.tradeHistory??[]).entries())e.push(p6(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),j=(0,pH.useMemo)(()=>{if(!l?.subaccountsByIndex)return[];let e=[];for(let t of Object.values(l.subaccountsByIndex))for(let[r,a]of(t.orderHistory??[]).entries())e.push(p3(a,r));return e.sort((e,t)=>t.timestamp-e.timestamp)},[l]),z=(0,pH.useMemo)(()=>{let e=l?.subaccountsByIndex?.[0];return e?.collateral?p1(e.collateral):null},[l]),$=(0,pH.useMemo)(()=>mn({collateralUsd:z,positions:F}),[z,F]),H=(0,pH.useMemo)(()=>({ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e})}pJ(),e.s([\"PhoenixTraderProvider\",0,function({children:e}){return(0,I.jsx)(my,{children:e})},\"usePhoenixTrader\",0,function(){let e=(0,pH.useContext)(mb);if(!e)throw Error(\"usePhoenixTrader must be used within PhoenixTraderProvider\");return e}],93122)}]);"
+    }
+  },
+  "callSites": {
+    "placeIsolatedLimitOrder": {
+      "expectedOffset": 453572,
+      "found": true,
+      "actualOffset": 453572,
+      "distance": 0,
+      "arguments": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}",
+      "callText": "placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p})"
+    },
+    "placeIsolatedMarketOrder": {
+      "expectedOffset": 453798,
+      "found": true,
+      "actualOffset": 453798,
+      "distance": 0,
+      "arguments": "laceIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p}",
+      "callText": "placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p})"
+    },
+    "buildLimitOrderPacket": {
+      "expectedOffset": 454134,
+      "found": true,
+      "actualOffset": 454134,
+      "distance": 0,
+      "arguments": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}",
+      "callText": "buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m})"
+    },
+    "buildPlaceLimitOrder": {
+      "expectedOffset": 454246,
+      "found": true,
+      "actualOffset": 454246,
+      "distance": 0,
+      "arguments": "uildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k}",
+      "callText": "buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k})"
+    },
+    "buildMarketOrderPacket": {
+      "expectedOffset": 454379,
+      "found": true,
+      "actualOffset": 454379,
+      "distance": 0,
+      "arguments": "uildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}",
+      "callText": "buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0})"
+    },
+    "buildPlaceMarketOrder": {
+      "expectedOffset": 454470,
+      "found": true,
+      "actualOffset": 454520,
+      "distance": 50,
+      "arguments": "uildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k}",
+      "callText": "buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k})"
+    }
+  },
+  "R": {
+    "offset": 452460,
+    "function": null,
+    "candidates": []
+  },
+  "earlyAnalysis": {
+    "placeIsolatedLimitOrder": [],
+    "placeIsolatedMarketOrder": []
+  },
+  "parameterFlow": [
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "authority",
+      "expression": "t",
+      "offset": 453572,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "symbol",
+      "expression": "e.symbol",
+      "offset": 453572,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "side",
+      "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+      "offset": 453572,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "numBaseLots",
+      "expression": "g",
+      "offset": 453572,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "quantity",
+      "expression": "l",
+      "offset": 453572,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "price",
+      "expression": "e.limitPriceUsd",
+      "offset": 453572,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "skipTransferToParent",
+      "expression": "x",
+      "offset": 453572,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "authority",
+      "expression": "t",
+      "offset": 453798,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "symbol",
+      "expression": "e.symbol",
+      "offset": 453798,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "side",
+      "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+      "offset": 453798,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "numBaseLots",
+      "expression": "g",
+      "offset": 453798,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "quantity",
+      "expression": "l",
+      "offset": 453798,
+      "stateReferences": []
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "skipTransferToParent",
+      "expression": "x",
+      "offset": 453798,
+      "stateReferences": []
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "symbol",
+      "expression": "e.symbol",
+      "offset": 454134,
+      "stateReferences": []
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "side",
+      "expression": "a",
+      "offset": 454134,
+      "stateReferences": []
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "priceUsd",
+      "expression": "e.limitPriceUsd",
+      "offset": 454134,
+      "stateReferences": []
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "baseUnits",
+      "expression": "l",
+      "offset": 454134,
+      "stateReferences": []
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "orderFlags",
+      "expression": "m",
+      "offset": 454134,
+      "stateReferences": []
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "authority",
+      "expression": "t",
+      "offset": 454246,
+      "stateReferences": []
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "symbol",
+      "expression": "(n=e.symbol",
+      "offset": 454246,
+      "stateReferences": []
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "orderPacket",
+      "expression": "i",
+      "offset": 454246,
+      "stateReferences": []
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "symbol",
+      "expression": "e.symbol",
+      "offset": 454379,
+      "stateReferences": []
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "side",
+      "expression": "a",
+      "offset": 454379,
+      "stateReferences": []
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "baseUnits",
+      "expression": "l",
+      "offset": 454379,
+      "stateReferences": []
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "orderFlags",
+      "expression": "m",
+      "offset": 454379,
+      "stateReferences": []
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "authority",
+      "expression": "t",
+      "offset": 454520,
+      "stateReferences": []
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "symbol",
+      "expression": "(i=e.symbol",
+      "offset": 454520,
+      "stateReferences": []
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "orderPacket",
+      "expression": "A",
+      "offset": 454520,
+      "stateReferences": []
+    }
+  ],
+  "variableTrace": [
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "authority",
+      "variable": "t",
+      "initializer": "pX(e.entryPriceUsd)",
+      "offsetInR": 3049
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "numBaseLots",
+      "variable": "g",
+      "initializer": "Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd",
+      "offsetInR": 883
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "quantity",
+      "variable": "l",
+      "initializer": "o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd)",
+      "offsetInR": 2915
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "price",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "price",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "price",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "price",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "price",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "field": "skipTransferToParent",
+      "variable": "x",
+      "initializer": "!u&&!!e.isolatedTransferUsd",
+      "offsetInR": 943
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "authority",
+      "variable": "t",
+      "initializer": "pX(e.entryPriceUsd)",
+      "offsetInR": 3049
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "side",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "numBaseLots",
+      "variable": "g",
+      "initializer": "Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd",
+      "offsetInR": 883
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "quantity",
+      "variable": "l",
+      "initializer": "o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd)",
+      "offsetInR": 2915
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "field": "skipTransferToParent",
+      "variable": "x",
+      "initializer": "!u&&!!e.isolatedTransferUsd",
+      "offsetInR": 943
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p})",
+      "offsetInR": 1085
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p})",
+      "offsetInR": 1311
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "Number(t)",
+      "offsetInR": 2625
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd)",
+      "offsetInR": 2748
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "Math.abs(pZ(e.virtualQuotePositionLots))",
+      "offsetInR": 3129
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "priceUsd",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "priceUsd",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "priceUsd",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "priceUsd",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "priceUsd",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "baseUnits",
+      "variable": "l",
+      "initializer": "o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd)",
+      "offsetInR": 2915
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "field": "orderFlags",
+      "variable": "m",
+      "initializer": "u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd",
+      "offsetInR": 857
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "authority",
+      "variable": "t",
+      "initializer": "pX(e.entryPriceUsd)",
+      "offsetInR": 3049
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "symbol",
+      "variable": "n",
+      "initializer": "v.get(t.symbol.toUpperCase()),i=function(e,t,r){let a=pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd)",
+      "offsetInR": 2694
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "field": "orderPacket",
+      "variable": "i",
+      "initializer": "await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k})",
+      "offsetInR": 1647
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p})",
+      "offsetInR": 1085
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p})",
+      "offsetInR": 1311
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "Number(t)",
+      "offsetInR": 2625
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "pX(e.basePositionLots),n=r?.baseLotsDecimals,i=null!=n?pY(a,n):null,s=null!=e.basePositionUnits&&\"\"!==e.basePositionUnits?pX(e.basePositionUnits):null,o=i??s??0,l=o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd)",
+      "offsetInR": 2748
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "side",
+      "variable": "a",
+      "initializer": "Math.abs(pZ(e.virtualQuotePositionLots))",
+      "offsetInR": 3129
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "baseUnits",
+      "variable": "l",
+      "initializer": "o>0?\"long\":o<0?\"short\":\"flat\",d=Math.abs(o),u=r?.markPriceUsd??null,c=function(e,t){if(null!=e.entryPriceUsd&&\"\"!==e.entryPriceUsd){let t=pX(e.entryPriceUsd)",
+      "offsetInR": 2915
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "field": "orderFlags",
+      "variable": "m",
+      "initializer": "u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd",
+      "offsetInR": 857
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "authority",
+      "variable": "t",
+      "initializer": "pX(e.entryPriceUsd)",
+      "offsetInR": 3049
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 2563
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 3967
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4464
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "[]",
+      "offsetInR": 4692
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "symbol",
+      "variable": "e",
+      "initializer": "l?.subaccountsByIndex?.[0]",
+      "offsetInR": 4885
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "symbol",
+      "variable": "i",
+      "initializer": "await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k})",
+      "offsetInR": 1647
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "field": "orderPacket",
+      "variable": "A",
+      "initializer": "await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k})",
+      "offsetInR": 1892
+    }
+  ],
+  "secondary": {
+    "placeIsolatedLimitOrder": [],
+    "placeIsolatedMarketOrder": []
+  },
+  "static": {
+    "placeOrder_R": true,
+    "processIdentityGuard": true,
+    "processSequenceGuard": false,
+    "deltaSequenceGuard": false,
+    "orderSequenceGuard": false,
+    "orderWholeReplacement": true,
+    "orderCloseDelete": true
+  },
+  "milestone": {
+    "limitCallFound": true,
+    "marketCallFound": true,
+    "RContainsOrderCalls": false,
+    "earlyLimitFunction": false,
+    "earlyMarketFunction": false,
+    "orderParameterSurface": true,
+    "secondarySurface": false,
+    "parameterFlowCount": 28,
+    "classification": "ORDER_PATH_REQUIRES_FURTHER_STATIC_RESOLUTION",
+    "productionBugConfirmed": false,
+    "backendBehaviorConfirmed": false,
+    "runtimeImpactConfirmed": false,
+    "transactionSent": false,
+    "walletUsed": false
+  }
+}

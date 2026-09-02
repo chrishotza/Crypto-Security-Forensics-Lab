@@ -1,0 +1,343 @@
+{
+  "bundle": {
+    "path": "D:\\Sana-Forensics\\data\\raw\\sana_bundle.js",
+    "bytes": 458284
+  },
+  "placeOrderExport": {
+    "offset": 457842,
+    "binding": "R"
+  },
+  "module": {
+    "start": 407842,
+    "end": 458238,
+    "length": 50396
+  },
+  "R": {
+    "definition": {
+      "offset": 452460,
+      "length": 2204,
+      "definition": "R=",
+      "code": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+      "score": 21
+    },
+    "calls": [],
+    "stateRefs": [],
+    "importantStrings": [
+      {
+        "offset": 84,
+        "value": "Register as a Phoenix trader first"
+      },
+      {
+        "offset": 1302,
+        "value": "order"
+      },
+      {
+        "offset": 1507,
+        "value": "order"
+      },
+      {
+        "offset": 1883,
+        "value": "order"
+      },
+      {
+        "offset": 2158,
+        "value": "order"
+      },
+      {
+        "offset": 2193,
+        "value": "order"
+      }
+    ]
+  },
+  "definitions": [
+    {
+      "offset": 452460,
+      "length": 2204,
+      "definition": "R=",
+      "code": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+      "score": 21
+    }
+  ],
+  "calledIdentifiers": [
+    {
+      "name": "Error",
+      "syntax": "direct",
+      "callOffset": 43,
+      "definitions": []
+    },
+    {
+      "name": "S",
+      "syntax": "direct",
+      "callOffset": 128,
+      "definitions": []
+    },
+    {
+      "name": "ready",
+      "syntax": "direct",
+      "callOffset": 211,
+      "definitions": [
+        {
+          "offset": 457512,
+          "definition": "ready:",
+          "length": 470,
+          "score": 0,
+          "code": "ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}),[w,t,u,f,l,z,$,A,F,q,D,j,y,p,g,C,M,_,L,B,O,R,U,N]);return(0,I.jsx)(mb.Provider,{value:H,children:e}"
+        }
+      ]
+    },
+    {
+      "name": "market",
+      "syntax": "direct",
+      "callOffset": 236,
+      "definitions": [
+        {
+          "offset": 456212,
+          "definition": "market:",
+          "length": 102,
+          "score": 0,
+          "code": "market:{markPriceUsd:n?.markPrice,baseLotsDecimals:n?.baseLotsDecimals,leverageTiers:n?.leverageTiers}"
+        },
+        {
+          "offset": 417417,
+          "definition": "market:",
+          "length": 74,
+          "score": 0,
+          "code": "market:{marketAddress:a.marketAddress,splineCollection:a.splineCollection}"
+        },
+        {
+          "offset": 421942,
+          "definition": "market:",
+          "length": 74,
+          "score": 0,
+          "code": "market:{marketAddress:a.marketAddress,splineCollection:a.splineCollection}"
+        },
+        {
+          "offset": 440050,
+          "definition": "market:",
+          "length": 74,
+          "score": 0,
+          "code": "market:{marketAddress:a.marketAddress,splineCollection:a.splineCollection}"
+        }
+      ]
+    },
+    {
+      "name": "abs",
+      "syntax": "direct",
+      "callOffset": 330,
+      "definitions": []
+    },
+    {
+      "name": "p7",
+      "syntax": "direct",
+      "callOffset": 485,
+      "definitions": []
+    },
+    {
+      "name": "mt",
+      "syntax": "direct",
+      "callOffset": 621,
+      "definitions": []
+    },
+    {
+      "name": "trim",
+      "syntax": "direct",
+      "callOffset": 785,
+      "definitions": []
+    },
+    {
+      "name": "Number",
+      "syntax": "direct",
+      "callOffset": 885,
+      "definitions": []
+    },
+    {
+      "name": "orders",
+      "syntax": "direct",
+      "callOffset": 1103,
+      "definitions": []
+    },
+    {
+      "name": "placeIsolatedLimitOrder",
+      "syntax": "direct",
+      "callOffset": 1112,
+      "definitions": []
+    },
+    {
+      "name": "mp",
+      "syntax": "direct",
+      "callOffset": 1293,
+      "definitions": []
+    },
+    {
+      "name": "placeIsolatedMarketOrder",
+      "syntax": "direct",
+      "callOffset": 1338,
+      "definitions": []
+    },
+    {
+      "name": "buildLimitOrderPacket",
+      "syntax": "direct",
+      "callOffset": 1674,
+      "definitions": []
+    },
+    {
+      "name": "buildPlaceLimitOrder",
+      "syntax": "direct",
+      "callOffset": 1786,
+      "definitions": [
+        {
+          "offset": 429999,
+          "definition": "buildPlaceLimitOrder:",
+          "length": 1109,
+          "score": 0,
+          "code": "buildPlaceLimitOrder:r,buildPlaceMarketOrder:a,buildPlaceMarketOrderDelegated:n,buildPlacePositionConditionalOrder:f,buildPlaceAttachedConditionalOrder:h,buildPlaceLimitOrderWithConditionals:p,buildPlacePostOnlyOrder:i,placeLimitOrder:r,placeMarketOrder:a,placeMarketOrderDelegated:n,placePositionConditionalOrder:f,placePostOnlyOrder:i,buildDepositFunds:async e=>{let t=await E.resolveExchangeInstructionAccounts(),[r,{phoenixTokenAccount:a}]=await Promise.all([E.resolveTraderAccount({authority:e.authority,traderPdaIndex:e.traderPdaIndex,traderSubaccountIndex:e.traderSubaccountIndex}),E.resolveTraderTokenAccounts(e.authority,{canonicalMint:t.canonicalMint,usdcMint:t.usdcMint})]);return hX({exchange:{phoenixProgramAddress:t.phoenixProgramAddress,logAuthorityAddress:t.logAuthorityAddress,globalConfigurationAddress:t.globalConfigurationAddress,canonicalMint:t.canonicalMint,globalVault:t.globalVault,globalTraderIndex:t.globalTraderIndex,activeTraderBuffer:t.activeTraderBuffer},trader:{authority:e.authority,traderAccount:r,traderTokenAccount:a,permissionAddress:e.permissionAddress},amount:e.amount})}"
+        }
+      ]
+    },
+    {
+      "name": "i1",
+      "syntax": "direct",
+      "callOffset": 1839,
+      "definitions": []
+    },
+    {
+      "name": "buildMarketOrderPacket",
+      "syntax": "direct",
+      "callOffset": 1919,
+      "definitions": []
+    },
+    {
+      "name": "pY",
+      "syntax": "direct",
+      "callOffset": 2012,
+      "definitions": []
+    },
+    {
+      "name": "buildPlaceMarketOrder",
+      "syntax": "direct",
+      "callOffset": 2060,
+      "definitions": [
+        {
+          "offset": 430022,
+          "definition": "buildPlaceMarketOrder:",
+          "length": 1086,
+          "score": 0,
+          "code": "buildPlaceMarketOrder:a,buildPlaceMarketOrderDelegated:n,buildPlacePositionConditionalOrder:f,buildPlaceAttachedConditionalOrder:h,buildPlaceLimitOrderWithConditionals:p,buildPlacePostOnlyOrder:i,placeLimitOrder:r,placeMarketOrder:a,placeMarketOrderDelegated:n,placePositionConditionalOrder:f,placePostOnlyOrder:i,buildDepositFunds:async e=>{let t=await E.resolveExchangeInstructionAccounts(),[r,{phoenixTokenAccount:a}]=await Promise.all([E.resolveTraderAccount({authority:e.authority,traderPdaIndex:e.traderPdaIndex,traderSubaccountIndex:e.traderSubaccountIndex}),E.resolveTraderTokenAccounts(e.authority,{canonicalMint:t.canonicalMint,usdcMint:t.usdcMint})]);return hX({exchange:{phoenixProgramAddress:t.phoenixProgramAddress,logAuthorityAddress:t.logAuthorityAddress,globalConfigurationAddress:t.globalConfigurationAddress,canonicalMint:t.canonicalMint,globalVault:t.globalVault,globalTraderIndex:t.globalTraderIndex,activeTraderBuffer:t.activeTraderBuffer},trader:{authority:e.authority,traderAccount:r,traderTokenAccount:a,permissionAddress:e.permissionAddress},amount:e.amount})}"
+        }
+      ]
+    },
+    {
+      "name": "mf",
+      "syntax": "direct",
+      "callOffset": 2188,
+      "definitions": []
+    }
+  ],
+  "graph": {
+    "R": {
+      "offset": 452460,
+      "length": 2204,
+      "calls": [
+        "Error",
+        "Number",
+        "S",
+        "abs",
+        "buildLimitOrderPacket",
+        "buildMarketOrderPacket",
+        "buildPlaceLimitOrder",
+        "buildPlaceMarketOrder",
+        "i1",
+        "market",
+        "mf",
+        "mp",
+        "mt",
+        "orders",
+        "p7",
+        "pY",
+        "placeIsolatedLimitOrder",
+        "placeIsolatedMarketOrder",
+        "ready",
+        "trim"
+      ],
+      "networkTerms": [],
+      "orderTerms": [
+        "order",
+        "orders",
+        "reduceOnly",
+        "leverage",
+        "price",
+        "side"
+      ],
+      "stateTerms": [],
+      "authTerms": [
+        "sign"
+      ]
+    },
+    "buildPlaceLimitOrder": {
+      "offset": 429999,
+      "length": 1109,
+      "score": 0,
+      "calls": [
+        "all",
+        "hX",
+        "resolveExchangeInstructionAccounts",
+        "resolveTraderAccount",
+        "resolveTraderTokenAccounts"
+      ],
+      "networkTerms": [],
+      "orderTerms": [],
+      "stateTerms": [],
+      "authTerms": []
+    },
+    "buildPlaceMarketOrder": {
+      "offset": 430022,
+      "length": 1086,
+      "score": 0,
+      "calls": [
+        "all",
+        "hX",
+        "resolveExchangeInstructionAccounts",
+        "resolveTraderAccount",
+        "resolveTraderTokenAccounts"
+      ],
+      "networkTerms": [],
+      "orderTerms": [],
+      "stateTerms": [],
+      "authTerms": []
+    },
+    "market": {
+      "offset": 456212,
+      "length": 102,
+      "score": 0,
+      "calls": [],
+      "networkTerms": [],
+      "orderTerms": [],
+      "stateTerms": [],
+      "authTerms": []
+    },
+    "ready": {
+      "offset": 457512,
+      "length": 470,
+      "score": 0,
+      "calls": [
+        "pJ"
+      ],
+      "networkTerms": [],
+      "orderTerms": [
+        "placeOrder"
+      ],
+      "stateTerms": [],
+      "authTerms": []
+    }
+  },
+  "networkPaths": [],
+  "authenticatedPaths": [],
+  "finding": {
+    "classification": "R_ORDER_CONSTRUCTION_ONLY_NETWORK_UNRESOLVED",
+    "productionBugConfirmed": false,
+    "backendBehaviorConfirmed": false,
+    "runtimeImpactConfirmed": false,
+    "transactionSent": false,
+    "walletUsed": false
+  }
+}

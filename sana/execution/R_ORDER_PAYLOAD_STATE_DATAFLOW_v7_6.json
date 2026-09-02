@@ -1,0 +1,1581 @@
+{
+  "R": {
+    "offset": 452460,
+    "length": 2204,
+    "targets": {
+      "placeIsolatedLimitOrder": [
+        {
+          "offsetInR": 1112,
+          "absoluteOffset": 453572,
+          "args": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}"
+        }
+      ],
+      "placeIsolatedMarketOrder": [
+        {
+          "offsetInR": 1338,
+          "absoluteOffset": 453798,
+          "args": "laceIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p}"
+        }
+      ]
+    }
+  },
+  "assignments": {
+    "g": [
+      {
+        "offsetInR": 883,
+        "absoluteOffset": 453343,
+        "match": "g=",
+        "rhs": "Number(d)",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "l": [],
+    "x": [
+      {
+        "offsetInR": 943,
+        "absoluteOffset": 453403,
+        "match": "x=",
+        "rhs": "!u&&!!e.isolatedTransferUsd",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "y": [
+      {
+        "offsetInR": 915,
+        "absoluteOffset": 453375,
+        "match": "y=",
+        "rhs": "c>0?{transferAmount:c}:{}",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "h": [
+      {
+        "offsetInR": 798,
+        "absoluteOffset": 453258,
+        "match": "h=",
+        "rhs": "f?{flightBuilderAuthority:f}:{}",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "p": [
+      {
+        "offsetInR": 832,
+        "absoluteOffset": 453292,
+        "match": "p=",
+        "rhs": "u?{isReduceOnly:!0}:{}",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "t": [],
+    "e": [
+      {
+        "offsetInR": 27,
+        "absoluteOffset": 452487,
+        "match": "e=",
+        "rhs": ">{if(!t)throw Error(\"Sign in first\")",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "a": [
+      {
+        "offsetInR": 132,
+        "absoluteOffset": 452592,
+        "match": "a=",
+        "rhs": "\"long\"===e.side?im.Bid:im.Ask",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      },
+      {
+        "offsetInR": 1085,
+        "absoluteOffset": 453545,
+        "match": "let a=",
+        "rhs": "await r.api.orders().placeIsolatedLimitOrder({authority:t",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      },
+      {
+        "offsetInR": 1089,
+        "absoluteOffset": 453549,
+        "match": "a=",
+        "rhs": "await r.api.orders().placeIsolatedLimitOrder({authority:t",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      },
+      {
+        "offsetInR": 1311,
+        "absoluteOffset": 453771,
+        "match": "let a=",
+        "rhs": "await r.api.orders().placeIsolatedMarketOrder({authority:t",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      },
+      {
+        "offsetInR": 1315,
+        "absoluteOffset": 453775,
+        "match": "a=",
+        "rhs": "await r.api.orders().placeIsolatedMarketOrder({authority:t",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "m": [
+      {
+        "offsetInR": 857,
+        "absoluteOffset": 453317,
+        "match": "m=",
+        "rhs": "u?sk.ReduceOnly:sk.None",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "u": [
+      {
+        "offsetInR": 602,
+        "absoluteOffset": 453062,
+        "match": "u=",
+        "rhs": "!!e.reduceOnly",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ],
+    "k": [
+      {
+        "offsetInR": 1516,
+        "absoluteOffset": 453976,
+        "match": "let k=",
+        "rhs": "null!=b?{traderSubaccountIndex:b}:{}",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      },
+      {
+        "offsetInR": 1520,
+        "absoluteOffset": 453980,
+        "match": "k=",
+        "rhs": "null!=b?{traderSubaccountIndex:b}:{}",
+        "localContext": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}",
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": []
+      }
+    ]
+  },
+  "dataflow": {
+    "g": [
+      {
+        "variable": "g",
+        "depth": 0,
+        "offsetInR": 883,
+        "rhs": "Number(d)",
+        "dependencies": [
+          "d"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "l": [],
+    "x": [
+      {
+        "variable": "x",
+        "depth": 0,
+        "offsetInR": 943,
+        "rhs": "!u&&!!e.isolatedTransferUsd",
+        "dependencies": [
+          "e",
+          "isolatedTransferUsd",
+          "u"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "e",
+        "depth": 1,
+        "offsetInR": 27,
+        "rhs": ">{if(!t)throw Error(\"Sign in first\")",
+        "dependencies": [
+          "Error",
+          "Sign",
+          "first",
+          "if",
+          "in",
+          "t",
+          "throw"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "u",
+        "depth": 1,
+        "offsetInR": 602,
+        "rhs": "!!e.reduceOnly",
+        "dependencies": [
+          "e",
+          "reduceOnly"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "y": [
+      {
+        "variable": "y",
+        "depth": 0,
+        "offsetInR": 915,
+        "rhs": "c>0?{transferAmount:c}:{}",
+        "dependencies": [
+          "c",
+          "transferAmount"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "h": [
+      {
+        "variable": "h",
+        "depth": 0,
+        "offsetInR": 798,
+        "rhs": "f?{flightBuilderAuthority:f}:{}",
+        "dependencies": [
+          "f",
+          "flightBuilderAuthority"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "p": [
+      {
+        "variable": "p",
+        "depth": 0,
+        "offsetInR": 832,
+        "rhs": "u?{isReduceOnly:!0}:{}",
+        "dependencies": [
+          "isReduceOnly",
+          "u"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "u",
+        "depth": 1,
+        "offsetInR": 602,
+        "rhs": "!!e.reduceOnly",
+        "dependencies": [
+          "e",
+          "reduceOnly"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "e",
+        "depth": 2,
+        "offsetInR": 27,
+        "rhs": ">{if(!t)throw Error(\"Sign in first\")",
+        "dependencies": [
+          "Error",
+          "Sign",
+          "first",
+          "if",
+          "in",
+          "t",
+          "throw"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "t": [],
+    "e": [
+      {
+        "variable": "e",
+        "depth": 0,
+        "offsetInR": 27,
+        "rhs": ">{if(!t)throw Error(\"Sign in first\")",
+        "dependencies": [
+          "Error",
+          "Sign",
+          "first",
+          "if",
+          "in",
+          "t",
+          "throw"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "a": [
+      {
+        "variable": "a",
+        "depth": 0,
+        "offsetInR": 132,
+        "rhs": "\"long\"===e.side?im.Bid:im.Ask",
+        "dependencies": [
+          "Ask",
+          "Bid",
+          "e",
+          "im",
+          "long",
+          "side"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "e",
+        "depth": 1,
+        "offsetInR": 27,
+        "rhs": ">{if(!t)throw Error(\"Sign in first\")",
+        "dependencies": [
+          "Error",
+          "Sign",
+          "first",
+          "if",
+          "in",
+          "t",
+          "throw"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "a",
+        "depth": 0,
+        "offsetInR": 1085,
+        "rhs": "await r.api.orders().placeIsolatedLimitOrder({authority:t",
+        "dependencies": [
+          "api",
+          "authority",
+          "await",
+          "orders",
+          "placeIsolatedLimitOrder",
+          "r",
+          "t"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "a",
+        "depth": 0,
+        "offsetInR": 1089,
+        "rhs": "await r.api.orders().placeIsolatedLimitOrder({authority:t",
+        "dependencies": [
+          "api",
+          "authority",
+          "await",
+          "orders",
+          "placeIsolatedLimitOrder",
+          "r",
+          "t"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "a",
+        "depth": 0,
+        "offsetInR": 1311,
+        "rhs": "await r.api.orders().placeIsolatedMarketOrder({authority:t",
+        "dependencies": [
+          "api",
+          "authority",
+          "await",
+          "orders",
+          "placeIsolatedMarketOrder",
+          "r",
+          "t"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "a",
+        "depth": 0,
+        "offsetInR": 1315,
+        "rhs": "await r.api.orders().placeIsolatedMarketOrder({authority:t",
+        "dependencies": [
+          "api",
+          "authority",
+          "await",
+          "orders",
+          "placeIsolatedMarketOrder",
+          "r",
+          "t"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "m": [
+      {
+        "variable": "m",
+        "depth": 0,
+        "offsetInR": 857,
+        "rhs": "u?sk.ReduceOnly:sk.None",
+        "dependencies": [
+          "None",
+          "ReduceOnly",
+          "sk",
+          "u"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "u",
+        "depth": 1,
+        "offsetInR": 602,
+        "rhs": "!!e.reduceOnly",
+        "dependencies": [
+          "e",
+          "reduceOnly"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "e",
+        "depth": 2,
+        "offsetInR": 27,
+        "rhs": ">{if(!t)throw Error(\"Sign in first\")",
+        "dependencies": [
+          "Error",
+          "Sign",
+          "first",
+          "if",
+          "in",
+          "t",
+          "throw"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "u": [
+      {
+        "variable": "u",
+        "depth": 0,
+        "offsetInR": 602,
+        "rhs": "!!e.reduceOnly",
+        "dependencies": [
+          "e",
+          "reduceOnly"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "e",
+        "depth": 1,
+        "offsetInR": 27,
+        "rhs": ">{if(!t)throw Error(\"Sign in first\")",
+        "dependencies": [
+          "Error",
+          "Sign",
+          "first",
+          "if",
+          "in",
+          "t",
+          "throw"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ],
+    "k": [
+      {
+        "variable": "k",
+        "depth": 0,
+        "offsetInR": 1516,
+        "rhs": "null!=b?{traderSubaccountIndex:b}:{}",
+        "dependencies": [
+          "b",
+          "traderSubaccountIndex"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      },
+      {
+        "variable": "k",
+        "depth": 0,
+        "offsetInR": 1520,
+        "rhs": "null!=b?{traderSubaccountIndex:b}:{}",
+        "dependencies": [
+          "b",
+          "traderSubaccountIndex"
+        ],
+        "state": [],
+        "order": [
+          "symbol",
+          "side",
+          "price",
+          "priceUsd",
+          "sizeUsd",
+          "quantity",
+          "numBaseLots",
+          "baseUnits",
+          "orderFlags",
+          "reduceOnly",
+          "leverage",
+          "orderPacket",
+          "subaccountIndex",
+          "authority"
+        ],
+        "auth": [
+          "sign"
+        ],
+        "network": [],
+        "context": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+      }
+    ]
+  },
+  "directStateRefs": [],
+  "parameterMap": {
+    "placeIsolatedLimitOrder": [
+      {
+        "offsetInR": 1112,
+        "field": "symbol",
+        "expression": "e.symbol",
+        "variables": [
+          "e",
+          "symbol"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1112,
+        "field": "side",
+        "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+        "variables": [
+          "buy",
+          "e",
+          "long",
+          "sell",
+          "side"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1112,
+        "field": "numBaseLots",
+        "expression": "g",
+        "variables": [
+          "g"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1112,
+        "field": "quantity",
+        "expression": "l",
+        "variables": [
+          "l"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1112,
+        "field": "price",
+        "expression": "e.limitPriceUsd",
+        "variables": [
+          "e",
+          "limitPriceUsd"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1112,
+        "field": "skipTransferToParent",
+        "expression": "x",
+        "variables": [
+          "x"
+        ],
+        "directState": []
+      }
+    ],
+    "placeIsolatedMarketOrder": [
+      {
+        "offsetInR": 1338,
+        "field": "symbol",
+        "expression": "e.symbol",
+        "variables": [
+          "e",
+          "symbol"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1338,
+        "field": "side",
+        "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+        "variables": [
+          "buy",
+          "e",
+          "long",
+          "sell",
+          "side"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1338,
+        "field": "numBaseLots",
+        "expression": "g",
+        "variables": [
+          "g"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1338,
+        "field": "quantity",
+        "expression": "l",
+        "variables": [
+          "l"
+        ],
+        "directState": []
+      },
+      {
+        "offsetInR": 1338,
+        "field": "skipTransferToParent",
+        "expression": "x",
+        "variables": [
+          "x"
+        ],
+        "directState": []
+      }
+    ]
+  },
+  "stateReachability": {
+    "placeIsolatedLimitOrder": [
+      {
+        "offsetInR": 1112,
+        "field": "symbol",
+        "expression": "e.symbol",
+        "variables": [
+          "e",
+          "symbol"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1112,
+        "field": "side",
+        "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+        "variables": [
+          "buy",
+          "e",
+          "long",
+          "sell",
+          "side"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1112,
+        "field": "numBaseLots",
+        "expression": "g",
+        "variables": [
+          "g"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1112,
+        "field": "quantity",
+        "expression": "l",
+        "variables": [
+          "l"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1112,
+        "field": "price",
+        "expression": "e.limitPriceUsd",
+        "variables": [
+          "e",
+          "limitPriceUsd"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1112,
+        "field": "skipTransferToParent",
+        "expression": "x",
+        "variables": [
+          "x"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      }
+    ],
+    "placeIsolatedMarketOrder": [
+      {
+        "offsetInR": 1338,
+        "field": "symbol",
+        "expression": "e.symbol",
+        "variables": [
+          "e",
+          "symbol"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1338,
+        "field": "side",
+        "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+        "variables": [
+          "buy",
+          "e",
+          "long",
+          "sell",
+          "side"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1338,
+        "field": "numBaseLots",
+        "expression": "g",
+        "variables": [
+          "g"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1338,
+        "field": "quantity",
+        "expression": "l",
+        "variables": [
+          "l"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      },
+      {
+        "offsetInR": 1338,
+        "field": "skipTransferToParent",
+        "expression": "x",
+        "variables": [
+          "x"
+        ],
+        "directState": [],
+        "reachableState": [],
+        "stateReachable": false
+      }
+    ]
+  },
+  "static": {
+    "limitCall": true,
+    "marketCall": true,
+    "gResolved": true,
+    "lResolved": false,
+    "xResolved": true,
+    "yResolved": true,
+    "hResolved": true,
+    "pResolved": true,
+    "directStateRefs": 0,
+    "limitParameterCount": 6,
+    "marketParameterCount": 5,
+    "limitStateReachability": false,
+    "marketStateReachability": false
+  },
+  "milestone": {
+    "limitCall": true,
+    "marketCall": true,
+    "variablesTracked": [
+      "g",
+      "l",
+      "x",
+      "y",
+      "h",
+      "p",
+      "t",
+      "e",
+      "a",
+      "m",
+      "u",
+      "k"
+    ],
+    "assignmentsFound": 15,
+    "directStateRefs": 0,
+    "limitStateReachability": false,
+    "marketStateReachability": false,
+    "classification": "R_ORDER_PAYLOAD_VARIABLES_PARTIALLY_RESOLVED",
+    "productionBugConfirmed": false,
+    "backendBehaviorConfirmed": false,
+    "runtimeImpactConfirmed": false,
+    "transactionSent": false,
+    "walletUsed": false,
+    "next": "TRACE_THE_FIRST_STATE_DERIVED_PARAMETER_INTO_THE_FINAL_HTTP_OBJECT"
+  }
+}

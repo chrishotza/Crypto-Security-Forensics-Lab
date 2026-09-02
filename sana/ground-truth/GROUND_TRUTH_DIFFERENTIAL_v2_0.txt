@@ -1,0 +1,126 @@
+[
+  {
+    "event": {
+      "slot": 1001,
+      "version": 10
+    },
+    "observed": {
+      "slot": 1001,
+      "version": 10,
+      "lastMessageSlot": 1001,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": 1,
+      "lastMessage": {
+        "slot": 1001,
+        "version": 10
+      }
+    },
+    "strict": {
+      "slot": 1001,
+      "version": 10,
+      "lastMessageSlot": 1001,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": 1,
+      "lastMessage": {
+        "slot": 1001,
+        "version": 10
+      },
+      "status": "ACCEPT"
+    },
+    "diverged": false,
+    "strict_status": "ACCEPT"
+  },
+  {
+    "event": {
+      "slot": 1003,
+      "version": 10
+    },
+    "observed": {
+      "slot": 1003,
+      "version": 10,
+      "lastMessageSlot": 1003,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": 2,
+      "lastMessage": {
+        "slot": 1003,
+        "version": 10
+      }
+    },
+    "strict": {
+      "slot": 1003,
+      "version": 10,
+      "lastMessageSlot": 1003,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": 2,
+      "lastMessage": {
+        "slot": 1003,
+        "version": 10
+      },
+      "status": "ACCEPT"
+    },
+    "diverged": false,
+    "strict_status": "ACCEPT"
+  },
+  {
+    "event": {
+      "slot": 999,
+      "version": 9
+    },
+    "observed": {
+      "slot": 999,
+      "version": 9,
+      "lastMessageSlot": 999,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": -4,
+      "lastMessage": {
+        "slot": 999,
+        "version": 9
+      }
+    },
+    "strict": {
+      "slot": 1003,
+      "version": 10,
+      "lastMessageSlot": 1003,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": 2,
+      "lastMessage": {
+        "slot": 1003,
+        "version": 10
+      },
+      "status": "REJECT_SLOT_ROLLBACK"
+    },
+    "diverged": true,
+    "strict_status": "REJECT_SLOT_ROLLBACK"
+  },
+  {
+    "event": {
+      "slot": 1005,
+      "version": 10
+    },
+    "observed": {
+      "slot": 1005,
+      "version": 10,
+      "lastMessageSlot": 1005,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": 6,
+      "lastMessage": {
+        "slot": 1005,
+        "version": 10
+      }
+    },
+    "strict": {
+      "slot": 1005,
+      "version": 10,
+      "lastMessageSlot": 1005,
+      "lastSnapshotSlot": 1000,
+      "slotDelta": 2,
+      "lastMessage": {
+        "slot": 1005,
+        "version": 10
+      },
+      "status": "ACCEPT"
+    },
+    "diverged": true,
+    "strict_status": "ACCEPT"
+  }
+]

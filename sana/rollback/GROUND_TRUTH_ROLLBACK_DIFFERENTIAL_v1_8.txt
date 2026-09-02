@@ -1,0 +1,146 @@
+{
+  "observed": [
+    {
+      "event": {
+        "slot": 1001,
+        "version": 10
+      },
+      "state": {
+        "slot": 1001,
+        "version": 10,
+        "lastMessage": {
+          "slot": 1001,
+          "version": 10
+        },
+        "lastMessageSlot": 1001,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": 1
+      }
+    },
+    {
+      "event": {
+        "slot": 1003,
+        "version": 10
+      },
+      "state": {
+        "slot": 1003,
+        "version": 10,
+        "lastMessage": {
+          "slot": 1003,
+          "version": 10
+        },
+        "lastMessageSlot": 1003,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": 2
+      }
+    },
+    {
+      "event": {
+        "slot": 999,
+        "version": 9
+      },
+      "state": {
+        "slot": 999,
+        "version": 9,
+        "lastMessage": {
+          "slot": 999,
+          "version": 9
+        },
+        "lastMessageSlot": 999,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": -4
+      }
+    },
+    {
+      "event": {
+        "slot": 1004,
+        "version": 10
+      },
+      "state": {
+        "slot": 1004,
+        "version": 10,
+        "lastMessage": {
+          "slot": 1004,
+          "version": 10
+        },
+        "lastMessageSlot": 1004,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": 5
+      }
+    }
+  ],
+  "strict": [
+    {
+      "event": {
+        "slot": 1001,
+        "version": 10
+      },
+      "result": {
+        "slot": 1001,
+        "version": 10,
+        "lastMessage": {
+          "slot": 1001,
+          "version": 10
+        },
+        "lastMessageSlot": 1001,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": 1,
+        "status": "ACCEPT"
+      }
+    },
+    {
+      "event": {
+        "slot": 1003,
+        "version": 10
+      },
+      "result": {
+        "slot": 1003,
+        "version": 10,
+        "lastMessage": {
+          "slot": 1003,
+          "version": 10
+        },
+        "lastMessageSlot": 1003,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": 2,
+        "status": "ACCEPT"
+      }
+    },
+    {
+      "event": {
+        "slot": 999,
+        "version": 9
+      },
+      "result": {
+        "slot": 1003,
+        "version": 10,
+        "lastMessage": {
+          "slot": 1003,
+          "version": 10
+        },
+        "lastMessageSlot": 1003,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": 2,
+        "status": "REJECT_ROLLBACK"
+      }
+    },
+    {
+      "event": {
+        "slot": 1004,
+        "version": 10
+      },
+      "result": {
+        "slot": 1004,
+        "version": 10,
+        "lastMessage": {
+          "slot": 1004,
+          "version": 10
+        },
+        "lastMessageSlot": 1004,
+        "lastSnapshotSlot": 1000,
+        "slotDelta": 1,
+        "status": "ACCEPT"
+      }
+    }
+  ]
+}

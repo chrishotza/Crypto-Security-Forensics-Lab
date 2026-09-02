@@ -1,0 +1,303 @@
+{
+  "bundle": {
+    "path": "D:\\Sana-Forensics\\data\\raw\\sana_bundle.js",
+    "bytes": 458284
+  },
+  "placeOrder": {
+    "binding": "R",
+    "property": "placeOrder",
+    "propertyOffset": 457842,
+    "rBinding": {
+      "property": "placeOrder",
+      "binding": "R",
+      "offset": 331,
+      "text": "placeOrder:R"
+    }
+  },
+  "objects": {
+    "placeOrder": {
+      "offset": 457511,
+      "length": 370,
+      "code": "{ready:!!w,address:t,builderConfigured:pJ(),registered:u,registering:f,traderState:l,traderHealth:l?.status.health??\"cold\",collateralUsd:z,availableUsd:$,markets:A,positions:F,openOrders:q,tradeHistory:D,orderHistory:j,fundingRows:y,error:p,statusError:g,register:C,refresh:M,refreshRegistration:_,reconnect:L,deposit:B,withdraw:O,placeOrder:R,cancelAll:U,loadFunding:N}"
+    }
+  },
+  "bindings": {
+    "placeOrder": {
+      "property": "placeOrder",
+      "binding": "R",
+      "offset": 331,
+      "text": "placeOrder:R"
+    }
+  },
+  "rDefinition": {
+    "offset": 452460,
+    "length": 2204,
+    "declaration": "R=",
+    "code": "R=(0,pH.useCallback)(async e=>{if(!t)throw Error(\"Sign in first\");if(!u)throw Error(\"Register as a Phoenix trader first\");let r=S(),a=\"long\"===e.side?im.Bid:im.Ask,n=e.markPriceUsd??0;try{let i;await r.exchange.ready();let s=r.exchange.market(e.symbol);if(!s)throw Error(`Unknown market ${e.symbol}`);let o=null!=e.baseLots&&Math.abs(e.baseLots)>=1||null!=e.sizeUnits&&e.sizeUnits>0;if(n<=0&&!o)throw Error(\"Mark price unavailable — refresh and try again\");let{baseUnits:l,baseLots:d}=p7({sizeUsd:e.sizeUsd,sizeUnits:e.sizeUnits,baseLots:e.baseLots,markPriceUsd:n,baseLotsDecimals:s.baseLotsDecimals}),u=!!e.reduceOnly,c=mt({reduceOnly:u,sizeUsd:e.sizeUsd,leverage:e.leverage??1,isolatedTransferUsd:e.isolatedTransferUsd}),f=(0,pG.getPublicEnv)().NEXT_PUBLIC_PHOENIX_BUILDER_AUTHORITY.trim()||null,h=f?{flightBuilderAuthority:f}:{},p=u?{isReduceOnly:!0}:{},m=u?sk.ReduceOnly:sk.None,g=Number(d),b=e.subaccountIndex,y=c>0?{transferAmount:c}:{},x=!u&&!!e.isolatedTransferUsd;if(\"isolated\"===e.marginMode){if(\"limit\"===e.orderType){if(!e.limitPriceUsd)throw Error(\"Limit price required\");let a=await r.api.orders().placeIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let a=await r.api.orders().placeIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p});return mp(a,t,T,\"order\")}let k=null!=b?{traderSubaccountIndex:b}:{};if(\"limit\"===e.orderType){let n;if(!e.limitPriceUsd)throw Error(\"Limit price required\");let i=await r.orderPackets.buildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}),s=await r.ixs.buildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k});return mp(s,t,T,\"order\")}let A=await r.orderPackets.buildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}),v=await r.ixs.buildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k});return mp(v,t,T,\"order\")}catch(e){throw Error(mf(e,\"order\"))}}"
+  },
+  "rCalls": {
+    "placeIsolatedLimitOrder": [
+      {
+        "offset": 1112,
+        "args": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}"
+      }
+    ],
+    "placeIsolatedMarketOrder": [
+      {
+        "offset": 1338,
+        "args": "laceIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p}"
+      }
+    ],
+    "buildLimitOrderPacket": [
+      {
+        "offset": 1674,
+        "args": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}"
+      }
+    ],
+    "buildMarketOrderPacket": [
+      {
+        "offset": 1919,
+        "args": "uildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}"
+      }
+    ],
+    "buildPlaceLimitOrder": [
+      {
+        "offset": 1786,
+        "args": "uildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k}"
+      }
+    ],
+    "buildPlaceMarketOrder": [
+      {
+        "offset": 2060,
+        "args": "uildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k}"
+      }
+    ]
+  },
+  "builderResolution": {
+    "buildLimitOrderPacket": [
+      {
+        "offset": 1674,
+        "arguments": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}"
+      }
+    ],
+    "buildMarketOrderPacket": [
+      {
+        "offset": 1919,
+        "arguments": "uildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}"
+      }
+    ],
+    "buildPlaceLimitOrder": [
+      {
+        "offset": 1786,
+        "arguments": "uildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k}"
+      }
+    ],
+    "buildPlaceMarketOrder": [
+      {
+        "offset": 2060,
+        "arguments": "uildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k}"
+      }
+    ]
+  },
+  "isolatedResolution": {
+    "placeIsolatedLimitOrder": {
+      "property": null,
+      "binding": null,
+      "definitions": []
+    },
+    "placeIsolatedMarketOrder": {
+      "property": null,
+      "binding": null,
+      "definitions": []
+    }
+  },
+  "isolatedDetails": {
+    "placeIsolatedLimitOrder": [],
+    "placeIsolatedMarketOrder": []
+  },
+  "isolatedCallGraph": [],
+  "parameterFlow": [
+    {
+      "target": "placeIsolatedLimitOrder",
+      "offset": 1112,
+      "field": "symbol",
+      "expression": "e.symbol",
+      "stateRefs": [],
+      "arguments": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "offset": 1112,
+      "field": "side",
+      "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+      "stateRefs": [],
+      "arguments": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "offset": 1112,
+      "field": "price",
+      "expression": "e.limitPriceUsd",
+      "stateRefs": [],
+      "arguments": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "offset": 1112,
+      "field": "quantity",
+      "expression": "l",
+      "stateRefs": [],
+      "arguments": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedLimitOrder",
+      "offset": 1112,
+      "field": "numBaseLots",
+      "expression": "g",
+      "stateRefs": [],
+      "arguments": "laceIsolatedLimitOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,price:e.limitPriceUsd,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "offset": 1338,
+      "field": "symbol",
+      "expression": "e.symbol",
+      "stateRefs": [],
+      "arguments": "laceIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "offset": 1338,
+      "field": "side",
+      "expression": "\"long\"===e.side?\"buy\":\"sell\"",
+      "stateRefs": [],
+      "arguments": "laceIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "offset": 1338,
+      "field": "quantity",
+      "expression": "l",
+      "stateRefs": [],
+      "arguments": "laceIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "placeIsolatedMarketOrder",
+      "offset": 1338,
+      "field": "numBaseLots",
+      "expression": "g",
+      "stateRefs": [],
+      "arguments": "laceIsolatedMarketOrder({authority:t,symbol:e.symbol,side:\"long\"===e.side?\"buy\":\"sell\",numBaseLots:g,quantity:l,skipTransferToParent:x,...y,...h,...p}"
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "offset": 1674,
+      "field": "symbol",
+      "expression": "e.symbol",
+      "stateRefs": [],
+      "arguments": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}"
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "offset": 1674,
+      "field": "side",
+      "expression": "a",
+      "stateRefs": [],
+      "arguments": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}"
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "offset": 1674,
+      "field": "priceUsd",
+      "expression": "e.limitPriceUsd",
+      "stateRefs": [],
+      "arguments": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}"
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "offset": 1674,
+      "field": "baseUnits",
+      "expression": "l",
+      "stateRefs": [],
+      "arguments": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}"
+    },
+    {
+      "target": "buildLimitOrderPacket",
+      "offset": 1674,
+      "field": "orderFlags",
+      "expression": "m",
+      "stateRefs": [],
+      "arguments": "uildLimitOrderPacket({symbol:e.symbol,side:a,priceUsd:e.limitPriceUsd,baseUnits:l,orderFlags:m}"
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "offset": 1919,
+      "field": "symbol",
+      "expression": "e.symbol",
+      "stateRefs": [],
+      "arguments": "uildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}"
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "offset": 1919,
+      "field": "side",
+      "expression": "a",
+      "stateRefs": [],
+      "arguments": "uildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}"
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "offset": 1919,
+      "field": "baseUnits",
+      "expression": "l",
+      "stateRefs": [],
+      "arguments": "uildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}"
+    },
+    {
+      "target": "buildMarketOrderPacket",
+      "offset": 1919,
+      "field": "orderFlags",
+      "expression": "m",
+      "stateRefs": [],
+      "arguments": "uildMarketOrderPacket({symbol:e.symbol,side:a,baseUnits:l,orderFlags:m,minBaseUnitsToFill:u?pY(1,s.baseLotsDecimals):void 0}"
+    },
+    {
+      "target": "buildPlaceLimitOrder",
+      "offset": 1786,
+      "field": "symbol",
+      "expression": "(n=e.symbol",
+      "stateRefs": [],
+      "arguments": "uildPlaceLimitOrder({authority:t,symbol:(n=e.symbol,i1(n)),orderPacket:i,...k}"
+    },
+    {
+      "target": "buildPlaceMarketOrder",
+      "offset": 2060,
+      "field": "symbol",
+      "expression": "(i=e.symbol",
+      "stateRefs": [],
+      "arguments": "uildPlaceMarketOrder({authority:t,symbol:(i=e.symbol,i1(i)),orderPacket:A,...k}"
+    }
+  ],
+  "static": {
+    "processIdentityGuard": true,
+    "processSequenceGuard": false,
+    "deltaSequenceGuard": false,
+    "orderSequenceGuard": false,
+    "orderReplacement": true,
+    "orderCloseDelete": true
+  },
+  "milestone": {
+    "isolatedLimitResolved": false,
+    "isolatedMarketResolved": false,
+    "isolatedOrder": false,
+    "isolatedState": false,
+    "isolatedNetwork": false,
+    "isolatedAuth": false,
+    "classification": "ISOLATED_ORDER_ALIAS_UNRESOLVED",
+    "productionBugConfirmed": false,
+    "backendBehaviorConfirmed": false,
+    "runtimeImpactConfirmed": false,
+    "transactionSent": false,
+    "walletUsed": false
+  }
+}
