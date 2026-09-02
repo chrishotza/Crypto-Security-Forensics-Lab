@@ -1,25 +1,17 @@
 ﻿# Publication Inventory
 
-## v0.1.1
-
-Published repository files are divided into two classes.
+## v0.1.2
 
 ### Research evidence
 
-- Evidence artifacts: 52
+Evidence artifacts: 52
 
-These are the curated forensic artifacts represented in
-manifests/repo-v0.1-manifest.csv.
+### Documentation / metadata
 
-### Repository metadata
-
-- Documentation / metadata files: 8
-
-These files describe scope, methodology, security boundaries,
-provenance and publication status.
+Documentation and metadata files: 18
 
 ### Total
 
-- Total non-Git files currently in repository: 60
+Non-Git repository files: 70
 
-The research manifest covers evidence artifacts only.
+The evidence manifest covers research artifacts only.

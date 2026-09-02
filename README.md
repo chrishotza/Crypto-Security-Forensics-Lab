@@ -13,6 +13,9 @@ The goal is to preserve technical evidence in a form that can be
 inspected, compared and independently reasoned about without exposing
 private runtime state or authentication material.
 
+This is a **research corpus**, not a production application and not a
+claim that a vulnerability exists.
+
 ## Research tracks
 
 ### Sana / Trading Forensics
@@ -35,18 +38,23 @@ private runtime state or authentication material.
 - Runtime probes
 - Dynamic CALLX analysis
 
+## Case studies
+
+Start with [CASE_INDEX.md](CASE_INDEX.md).
+
+The public corpus is organized into seven investigation tracks.
+
 ## Important distinction
 
 This is an **evidence corpus**, not a turnkey application.
 
-Some historical experiments depended on local bundles, runtime
-captures, private working data or specific analysis environments that
-are intentionally not published.
+Some historical experiments depended on local bundles, runtime captures,
+private working data or specific analysis environments that are
+intentionally not published.
 
-Accordingly, "reproducible" here means that the published artifacts
-preserve the relevant evidence and analysis inputs where possible;
-it does not mean every historical script runs unchanged from a clean
-clone.
+"Reproducible" means the published artifacts preserve relevant evidence
+and analysis inputs where possible; it does not mean every historical
+script runs unchanged from a clean clone.
 
 ## Evidence policy
 
@@ -62,26 +70,24 @@ The public repository excludes:
 
 ## How to read the corpus
 
-Start with:
-
-1. CASE_INDEX.md
-2. RESEARCH_STATUS.md
+1. [CASE_INDEX.md](CASE_INDEX.md)
+2. [methodology/FORENSIC_METHODOLOGY.md](methodology/FORENSIC_METHODOLOGY.md)
 3. manifests/repo-v0.1-manifest.csv
+4. Individual case evidence
 
-Then follow the chain from:
+### Core chain
 
 order construction → provider boundary → state → execution → transaction
 
-and, separately:
+### Runtime chain
 
 TraderState → capability/risk boundary → SBPF/runtime behavior
 
 ## Provenance
 
-manifests/repo-v0.1-manifest.csv records the curated public corpus.
+manifests/repo-v0.1-manifest.csv records the curated public evidence.
 
-Its SHA-256 values refer to the **content actually published** in the
-repository.
+Its SHA-256 values refer to the **content actually published**.
 
 ## Research claims
 
@@ -93,4 +99,4 @@ reproduction, impact analysis and scope.
 
 ## Status
 
-**v0.1 — Public Forensic Corpus**
+**v0.1.2 — Case Study Publication Layer**
