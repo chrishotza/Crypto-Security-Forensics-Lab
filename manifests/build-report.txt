@@ -1,28 +1,23 @@
 ﻿CRYPTO SECURITY FORENSICS LAB — V0.1 BUILD
-Generated: 2026-09-02 00:19:57
 
-SELECTED INPUTS: 56
-COPIED: 56
-FAILED: 0
+Corpus selection:
+- Local forensic archive inspected: 6,060 artifacts
+- Unique hash candidates: 265
+- Initial v0.1 selection: 56
+- Public research artifacts: 52
+- Excluded from public publication: 4
 
-=== COPIED BY ROOT ===
-SANA = 48
-PHOENIX = 8
+Published corpus:
+- Sana: 44
+- Phoenix: 8
 
-=== COPIED BY BUCKET ===
-GENERAL_FORENSICS = 8
-GROUND_TRUTH = 7
-BOUNDARY = 7
-TRADERSTATE = 6
-DATAFLOW = 5
-ROLLBACK = 5
-PROBE = 4
-REDUCER = 4
-CALLGRAPH = 4
-MEMORY = 3
-AUTHORIZATION = 2
-SBPF = 1
+Important:
+This repository contains a curated research corpus, not the complete
+private working archive.
 
-=== FAILED ===
-NONE
+Some experiments depended on local source bundles, runtime captures,
+build environments or authentication/session state that are intentionally
+not published.
 
+Hashes in manifests/repo-v0.1-manifest.csv refer to the content actually
+published in this repository.

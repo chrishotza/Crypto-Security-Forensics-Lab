@@ -1,23 +1,23 @@
 ﻿# Crypto Security Forensics Lab
 
-Public research laboratory for reproducible forensic analysis of
-crypto trading infrastructure, Solana execution paths, order-flow
-boundaries, state propagation, authorization boundaries and SBPF
-runtime behavior.
+A curated public research corpus for forensic analysis of crypto
+trading infrastructure, Solana execution paths, order-flow boundaries,
+state propagation, authorization boundaries and SBPF runtime behavior.
 
-## Scope
+## What this repository is
 
-This repository is organized around evidence and reproducibility,
-not around raw working-directory dumps.
+This repository contains selected artifacts from a larger private
+forensic workspace.
 
-The v0.1 corpus was selected from a larger local forensic archive
-and deduplicated using SHA-256 provenance.
+The goal is to preserve technical evidence in a form that can be
+inspected, compared and independently reasoned about without exposing
+private runtime state or authentication material.
 
-## Research Areas
+## Research tracks
 
 ### Sana / Trading Forensics
 
-- Order implementation to transaction flow
+- Order implementation → transaction flow
 - Provider and execution boundaries
 - Order call graphs
 - State-to-parameter propagation
@@ -29,41 +29,68 @@ and deduplicated using SHA-256 provenance.
 ### Phoenix / Solana Execution Forensics
 
 - TraderState analysis
-- Capability / risk authorization boundaries
+- Capability and risk boundaries
 - SBPF memory mapping
 - Interpreter behavior
 - Runtime probes
-- Dynamic execution / CALLX analysis
+- Dynamic CALLX analysis
 
-## Evidence Policy
+## Important distinction
 
-This repository intentionally excludes:
+This is an **evidence corpus**, not a turnkey application.
 
-- build artifacts
-- dependency trees
-- caches
-- working backups
-- credentials and private material
-- live authentication/session material
+Some historical experiments depended on local bundles, runtime
+captures, private working data or specific analysis environments that
+are intentionally not published.
+
+Accordingly, "reproducible" here means that the published artifacts
+preserve the relevant evidence and analysis inputs where possible;
+it does not mean every historical script runs unchanged from a clean
+clone.
+
+## Evidence policy
+
+The public repository excludes:
+
+- credentials and private keys
+- authentication/session secrets
 - raw production bundles
-- uncontrolled dumps
+- uncontrolled runtime dumps
+- private user data
+- build/dependency artifacts
+- local machine paths where avoidable
 
-The repository should contain only artifacts that can be explained,
-attributed and reproduced.
+## How to read the corpus
+
+Start with:
+
+1. CASE_INDEX.md
+2. RESEARCH_STATUS.md
+3. manifests/repo-v0.1-manifest.csv
+
+Then follow the chain from:
+
+order construction → provider boundary → state → execution → transaction
+
+and, separately:
+
+TraderState → capability/risk boundary → SBPF/runtime behavior
 
 ## Provenance
 
-Each selected artifact is recorded in:
+manifests/repo-v0.1-manifest.csv records the curated public corpus.
 
-manifests/repo-v0.1-manifest.csv
+Its SHA-256 values refer to the **content actually published** in the
+repository.
 
-The manifest preserves the original path, SHA-256 hash, forensic
-bucket, score and publication role used during corpus selection.
+## Research claims
+
+No individual script, trace or report should be interpreted as proof
+of a vulnerability on its own.
+
+Security claims require an explicit hypothesis, evidence chain,
+reproduction, impact analysis and scope.
 
 ## Status
 
-v0.1 — forensic corpus assembly.
-
-The contents are research artifacts and should not be interpreted
-as a claim of vulnerability without the corresponding evidence,
-reproduction procedure and scope.
+**v0.1 — Public Forensic Corpus**
