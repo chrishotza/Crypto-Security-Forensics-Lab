@@ -53,6 +53,16 @@ class ManifestGuardTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Git blob mismatch"):
                 verify_current_blobs(root, manifest)
 
+    def test_current_blob_guard_rejects_single_backslash_in_path(self):
+        # A single backslash may be a separator on Windows but a filename
+        # character on POSIX: neither is a canonical Git manifest path.
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            manifest = root / "current.csv"
+            self._write_current(manifest, r"sana/archive\faked.json", b"fixture")
+            with self.assertRaisesRegex(ValueError, "unsafe publication path"):
+                verify_current_blobs(root, manifest)
+
     def test_current_blob_guard_rejects_traversal(self):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -76,7 +76,7 @@ def verify_current_blobs(root: Path = ROOT, manifest: Path = CURRENT) -> dict:
         name = row.get("PublishedPath", "")
         relative = Path(name)
         if (not name or relative.is_absolute() or ".." in relative.parts
-                or "\\\\" in name or relative.parts[0] not in ("sana", "phoenix")):
+                or "\\" in name or relative.parts[0] not in ("sana", "phoenix")):
             raise ValueError(f"Row {index}: unsafe publication path")
         if name in paths:
             raise ValueError(f"Row {index}: duplicate current path")
