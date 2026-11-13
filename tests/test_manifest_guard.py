@@ -63,7 +63,7 @@ class ManifestGuardTests(unittest.TestCase):
 
     @staticmethod
     def _write_current(manifest, path, content):
-        checksum = hashlib.sha1(b"blob " + str(len(content)).encode() + b"\\x00" + content).hexdigest()
+        checksum = hashlib.sha1(b"blob " + str(len(content)).encode() + b"\x00" + content).hexdigest()
         with manifest.open("w", encoding="utf-8", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=["PublishedPath", "GitBlobSHA1"])
             writer.writeheader()
