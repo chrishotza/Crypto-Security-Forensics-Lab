@@ -16,6 +16,45 @@ CURRENT = ROOT / "manifests" / "current-tree-blobs.csv"
 HEX = re.compile(r"[a-fA-F0-9]{64}\Z")
 
 
+
+
+def _canonical_publication_path(name: object) -> Path:
+    """Accept canonical relative Git paths only, under approved evidence roots."""
+    if not isinstance(name, str) or "\\" in name:
+        raise ValueError("Unsafe publication path")
+    segments = name.split("/")
+    if (len(segments) < 2 or segments[0] not in ("sana", "phoenix")
+            or any(part in ("", ".", "..") for part in segments)
+            or any(ord(character) < 32 or ord(character) == 127 for character in name)):
+        raise ValueError("Unsafe publication path")
+    return Path(*segments)
+
+
+def _contains_symlink(root: Path, relative: Path) -> bool:
+    current = root
+    for segment in relative.parts:
+        current /= segment
+        if current.is_symlink():
+            return True
+    return False
+
+
+def _all_published_files(root: Path) -> set[str]:
+    """The pinned current manifest must include every file in the evidence roots."""
+    found: set[str] = set()
+    for area in ("sana", "phoenix"):
+        directory = root / area
+        if directory.is_symlink():
+            raise ValueError("Unsafe published symlink")
+        if not directory.exists():
+            continue
+        for artifact in directory.rglob("*"):
+            if artifact.is_symlink():
+                raise ValueError("Unsafe published symlink")
+            if artifact.is_file():
+                found.add(artifact.relative_to(root).as_posix())
+    return found
+
 def verify_manifest(root: Path = ROOT, manifest: Path = MANIFEST) -> dict:
     root = Path(root).resolve()
     rows = list(csv.DictReader(Path(manifest).open(encoding="utf-8-sig", newline="")))
@@ -27,16 +66,16 @@ def verify_manifest(root: Path = ROOT, manifest: Path = MANIFEST) -> dict:
     paths = set()
     for index, row in enumerate(rows, start=1):
         name = row["PublishedPath"]
-        relative = Path(name)
-        if (not name or relative.is_absolute() or ".." in relative.parts
-                or relative.parts[0] not in ("sana", "phoenix")
-                or "\\" in name):
-            raise ValueError(f"Row {index}: unsafe publication path")
+        try:
+            relative = _canonical_publication_path(name)
+        except ValueError as exc:
+            raise ValueError(f"Row {index}: unsafe publication path") from exc
         if name in paths:
             raise ValueError(f"Row {index}: duplicated path")
         paths.add(name)
         target = root / relative
-        if not target.is_file() or target.is_symlink() or not target.resolve().is_relative_to(root):
+        if (not target.is_file() or _contains_symlink(root, relative)
+                or not target.resolve().is_relative_to(root)):
             raise ValueError(f"Row {index}: published artifact missing/unsafe: {name}")
         if row["HashBasis"] != "published_content_sha256":
             raise ValueError(f"Row {index}: unsupported digest basis")
@@ -74,15 +113,15 @@ def verify_current_blobs(root: Path = ROOT, manifest: Path = CURRENT) -> dict:
     paths = set()
     for index, row in enumerate(rows, start=1):
         name = row.get("PublishedPath", "")
-        relative = Path(name)
-        if (not name or relative.is_absolute() or ".." in relative.parts
-                or "\\" in name or relative.parts[0] not in ("sana", "phoenix")):
-            raise ValueError(f"Row {index}: unsafe publication path")
+        try:
+            relative = _canonical_publication_path(name)
+        except ValueError as exc:
+            raise ValueError(f"Row {index}: unsafe publication path") from exc
         if name in paths:
             raise ValueError(f"Row {index}: duplicate current path")
         paths.add(name)
         target = root / relative
-        if (not target.is_file() or target.is_symlink()
+        if (not target.is_file() or _contains_symlink(root, relative)
                 or not target.resolve().is_relative_to(root)):
             raise ValueError(f"Row {index}: current file missing or unsafe")
         expected = row.get("GitBlobSHA1", "")
@@ -98,6 +137,13 @@ def verify_current_blobs(root: Path = ROOT, manifest: Path = CURRENT) -> dict:
                 checksum.update(chunk)
         if checksum.hexdigest().casefold() != expected.casefold():
             raise ValueError(f"Row {index}: current Git blob mismatch: {name}")
+    published_files = _all_published_files(root)
+    if paths != published_files:
+        raise ValueError(
+            "Current Git blob manifest does not cover published files: "
+            f"{len(published_files - paths)} unindexed, "
+            f"{len(paths - published_files)} missing"
+        )
     return {"verified_artifacts": len(rows), "scope": "current_git_blob_snapshot_only"}
 
 
