@@ -92,7 +92,7 @@ def verify_current_blobs(root: Path = ROOT, manifest: Path = CURRENT) -> dict:
         # Hash in chunks to avoid loading large forensic JSON into RAM.
         size = target.stat().st_size
         checksum = hashlib.sha1()
-        checksum.update(b"blob " + str(size).encode("ascii") + b"\\x00")
+        checksum.update(b"blob " + str(size).encode("ascii") + b"\x00")
         with target.open("rb") as file:
             for chunk in iter(lambda: file.read(1024 * 1024), b""):
                 checksum.update(chunk)
